@@ -1,0 +1,51 @@
+.editor-wrapper {
+  @apply h-full min-h-[300px] border border-gray-300 rounded-md overflow-hidden;
+}
+
+.preview.markdown-body {
+  @apply min-h-[300px] overflow-auto bg-white;
+}
+
+
+.preview.markdown-body pre {
+  @apply bg-gray-100 rounded-md;
+}
+
+.preview.markdown-body code {
+  @apply text-sm;
+}
+
+.preview.markdown-body h1,
+.preview.markdown-body h2,
+.preview.markdown-body h3,
+.preview.markdown-body h4,
+.preview.markdown-body h5,
+.preview.markdown-body h6 {
+  @apply border-b border-gray-200 pb-2 mb-4;
+}
+
+.preview.markdown-body blockquote {
+  @apply border-l-4 border-gray-200 pl-4 italic;
+}
+
+.preview.markdown-body ul,
+.preview.markdown-body ol {
+  @apply pl-8;
+}
+
+.preview.markdown-body li {
+  @apply text-black;
+}
+
+.preview.markdown-body table {
+  @apply border-collapse;
+}
+
+.preview.markdown-body th,
+.preview.markdown-body td {
+  @apply border border-gray-300 p-2;
+}
+
+.preview.markdown-body img {
+  @apply max-w-full h-auto;
+}

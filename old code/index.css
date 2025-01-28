@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-sans text-text-primary bg-white;
+    background-color: white;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    @apply m-0 pb-16 min-h-screen bg-white;
+    background-color: white;
+  }
+
+  #root {
+    min-height: 100vh;
+    background-color: white;
+  }
+
+  a {
+    @apply text-primary cursor-pointer;
+  }
+
+  h1, h2, h3, h4 {
+    @apply m-0 font-sans;
+  }
+
+  p {
+    @apply text-text-secondary text-base leading-relaxed my-4;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-4xl mx-auto px-4;
+  }  
+
+  .nav-link {
+    @apply text-black text-lg hover:underline;
+  }
+  
+  .nav-link-active {
+    @apply text-black font-bold border-b-2 border-black;
+  }
+
+  .prose pre {
+    background-color: white !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+  }
+
+  .prose pre code {
+    font-weight: 400 !important;
+    font-size: 0.875em !important;
+    line-height: 1.7142857 !important;
+    padding: 0 !important;
+  }
+}

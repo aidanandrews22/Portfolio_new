@@ -1,0 +1,93 @@
+## **Rules**
+
+### **Rule 1: Project Overview**
+> **"Build a performant, modular React portfolio using the latest technologies. Ensure strict adherence to design principles and system settings, including dynamic light/dark mode. The website needs to be as simple as possible and as beautiful as possible, with a focus on the content and the user experience."**
+
+Whenever you need to summarize or confirm the project's scope, restate **Rule 1** exactly as above.
+
+### **Rule 2: Core Stack**
+> **"Frontend: React, Styling: Tailwind CSS v4.0 (using @tailwindcss/vite); TypeScript; React Query/TanStack Query for data; pnpm."**
+
+Whenever you specify technology choices (e.g., React, Tailwind CSS, TypeScript, etc.), restate **Rule 2** exactly as above, in its entirety.
+
+### **Rule 3: Navigation**
+> **"Use React Router v7 for client-side routing with modern data APIs and type safety."**
+
+When describing or implementing navigation, restate **Rule 3**.
+
+### **Rule 4: Styling Guide**
+> **"1) System-Driven Themes: Use native CSS color-scheme for automatic dark mode. 2) Typography: Use system fonts with scalable CSS variables. 3) Colors: Single accent color using OKLCH color space. Background colors use color-mix() for transparency. 4) Buttons: Rounded, interactive, with @starting-style transitions. 5) Icons: Use system icons for consistency."**
+
+When writing or explaining styling decisions, restate **Rule 4** exactly as it appears.
+
+### **Rule 5: File Structure**
+> 
+```
+src/
+  ├── pages/        # Route components
+  ├── components/   # Reusable components
+  ├── lib/          # Third-party lib configurations
+  ├── types/        # TypeScript types
+  ├── hooks/        # Custom hooks
+  ├── utils/        # Helper functions
+  └── services/     # API calls and business logic
+```
+> **"Maintain this clean directory hierarchy as shown above."**
+
+Whenever referencing where new code should go, restate **Rule 5**.
+
+### **Rule 6: Database Schema (Sample)**
+
+```
+.
+├── README.md
+└── content
+    ├── notes
+    ├── notes.json
+    ├── old_pdfs
+    ├── pdf
+    ├── posts
+    ├── posts.json
+    ├── projects
+    ├── projects.json
+    └── undefineds
+
+8 directories, 4 files
+```
+
+> **"Use github for projects and blogs to get the markdown files. All data is stored and written in https://github.com/aidanandrews22/aidanandrews22.github.io.git."**
+
+When referencing any database schema or queries, restate **Rule 6** exactly as above.
+
+### **Rule 7: Development Standards**
+> **"1) System Settings: Native color-scheme support for seamless theme switching. 2) File Structure: Maintain a clean directory hierarchy. 3) Type Validation: Use Zod for runtime validation. 4) Reusability: Modular components and hooks. 5) Performance: Leverage Tailwind v4.0's new high-performance engine. 6) Accessibility: Support system preferences, high-contrast modes, and reduced motion. 7) Testing: Ensure parity between themes and responsiveness."**
+
+When discussing best practices (performance, accessibility, testing, etc.), restate **Rule 7**.
+
+### **Rule 8: Build Tools**
+> **"Vite with @tailwindcss/vite plugin. Follow modern build practices."**
+
+When referencing or explaining build pipelines, restate **Rule 8**.
+
+### **Rule 9: References**
+> **"Tailwind v4.0 Docs, Vite Documentation, React Router Documentation."**
+
+When mentioning or citing external documentation, restate **Rule 9** exactly as above.
+
+### **Rule 10: Goal**
+> **"Deliver a polished, accessible app with strict adherence to these concise standards."**
+
+When summarizing final deliverables or talking about the end goal, restate **Rule 10**.
+
+---
+
+## **Additional Instructions**
+
+1. **Mandatory Restatement**: Each time you reference a rule to justify or clarify a design or code decision, restate that rule *verbatim* and mention the phrase "**Referenced Rule X**" (where X is the rule number).
+2. **No Omissions**: You must not paraphrase these rules. They must appear exactly as stated above whenever they are used.
+3. **Styling and Performance Priority**: In any code snippet or explanation, demonstrate how you achieve robust performance using Tailwind v4.0's new features like color-mix(), @starting-style, and the high-performance engine.
+4. **TypeScript Best Practices**: Always ensure type safety and clarity, referencing Zod for runtime checks.
+5. **Clarity**: In your explanations, always remain clear and well-organized. Mention the relevant rule numbers explicitly, then restate them verbatim.
+6. **No Configuration Files**: Do not create any Tailwind or PostCSS configuration files as they are not needed with Tailwind v4.0.
+
+---
