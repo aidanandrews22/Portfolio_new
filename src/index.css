@@ -2,8 +2,8 @@
 
 @theme {
   /* Colors */
-  --color-primary: oklch(0.65 0.25 31.77);    /* Illinois Orange - #E84A27 in OKLCH */
-  --color-secondary: oklch(0.25 0.05 264.77);  /* Illinois Blue - #13294B in OKLCH */
+  --color-primary: oklch(0.55 0.18 250.0);    /* A balanced blue that works well in both light/dark modes */
+  --color-secondary: oklch(0.45 0.15 250.0);  /* Slightly darker variant for hover states */
   --color-background-light: oklch(1 0 0);      /* Pure white */
   --color-background-dark: oklch(0 0 0);       /* Pure black */
 
