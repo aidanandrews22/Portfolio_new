@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, NavLink } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
 // Lazy load pages for better performance
@@ -65,10 +65,38 @@ export default function App() {
           <div className="container mx-auto px-4">
             <div className="flex justify-center py-3">
               <div className="flex gap-8">
-                <a href="/about" className="hover:text-[var(--color-primary)] transition-colors">About</a>
-                <a href="/projects" className="hover:text-[var(--color-primary)] transition-colors">Projects</a>
-                <a href="/blog" className="hover:text-[var(--color-primary)] transition-colors">Blog</a>
-                <a href="/bookshelf" className="hover:text-[var(--color-primary)] transition-colors">Bookshelf</a>
+                <NavLink 
+                  to="/about" 
+                  className={({ isActive }) => 
+                    `transition-all ${isActive ? 'font-bold border-b-2 border-current' : 'hover:text-[var(--color-primary)]'}`
+                  }
+                >
+                  About
+                </NavLink>
+                <NavLink 
+                  to="/projects" 
+                  className={({ isActive }) => 
+                    `transition-all ${isActive ? 'font-bold border-b-2 border-current' : 'hover:text-[var(--color-primary)]'}`
+                  }
+                >
+                  Projects
+                </NavLink>
+                <NavLink 
+                  to="/blog" 
+                  className={({ isActive }) => 
+                    `transition-all ${isActive ? 'font-bold border-b-2 border-current' : 'hover:text-[var(--color-primary)]'}`
+                  }
+                >
+                  Blog
+                </NavLink>
+                <NavLink 
+                  to="/bookshelf" 
+                  className={({ isActive }) => 
+                    `transition-all ${isActive ? 'font-bold border-b-2 border-current' : 'hover:text-[var(--color-primary)]'}`
+                  }
+                >
+                  Bookshelf
+                </NavLink>
               </div>
             </div>
           </div>

@@ -96,7 +96,7 @@ export default function About() {
       className="max-w-3xl mx-auto space-y-12 pb-12"
     >
       <section className="space-y-4">
-        <h1 className="text-4xl font-bold">Hi, I'm Aidan Andrews</h1>
+        <h1 className="text-4xl font-bold">About Me</h1>
         <p className="text-lg leading-relaxed">
           I stream myself working on{' '}
           <a href="https://www.youtube.com/@aidanandrews/streams" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
