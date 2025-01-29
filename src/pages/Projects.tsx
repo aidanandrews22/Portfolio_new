@@ -95,17 +95,15 @@ export default function Projects() {
       
       <div className="grid gap-6 md:grid-cols-2">
         {filteredProjects.map((project, index) => (
-          <Link
+          <motion.article
             key={project.id}
-            to={`/projects/${project.id}`}
-            className="group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="h-full p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors group cursor-pointer"
+            onClick={() => window.location.href = `/projects/${project.id}`}
           >
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="h-full p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
-            >
+            <div className="flex flex-col h-full">
               <h2 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{project.title}</h2>
               <p className="mb-4 text-sm/relaxed">{project.description}</p>
               
@@ -120,35 +118,39 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 mt-auto">
                 {project.githubLink && (
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(project.githubLink, '_blank', 'noopener noreferrer');
+                    }}
                     className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     GitHub →
-                  </a>
+                  </button>
                 )}
                 {project.demoLink && (
-                  <a
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(project.demoLink, '_blank', 'noopener noreferrer');
+                    }}
                     className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     Live Demo →
-                  </a>
+                  </button>
                 )}
-                <span className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+                <span 
+                  className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity ml-auto"
+                >
                   View Details →
                 </span>
               </div>
-            </motion.article>
-          </Link>
+            </div>
+          </motion.article>
         ))}
       </div>
     </motion.div>

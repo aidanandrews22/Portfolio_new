@@ -15,8 +15,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw, rehypeSanitize]}
         components={{
-          // Custom components for markdown elements
-          a: ({ node, ...props }) => (
+          a: (props) => (
             <a
               {...props}
               className="text-[var(--color-primary)] hover:opacity-80 transition-opacity"
@@ -24,13 +23,16 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
               rel="noopener noreferrer"
             />
           ),
-          code: ({ node, inline, ...props }) => (
-            <code
-              {...props}
-              className={`${inline ? 'bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] px-1.5 py-0.5 rounded' : ''}`}
-            />
-          ),
-          pre: ({ node, ...props }) => (
+          code: (props) => {
+            const isInline = !props.className?.includes('language-');
+            return (
+              <code
+                {...props}
+                className={`${isInline ? 'bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] px-1.5 py-0.5 rounded' : ''} ${props.className || ''}`}
+              />
+            );
+          },
+          pre: (props) => (
             <pre
               {...props}
               className="bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] p-4 rounded-lg overflow-x-auto"
