@@ -26,7 +26,8 @@ export default function App() {
                 />
                 <div>
                   <h1 className="text-lg font-bold">Aidan Andrews</h1>
-                  <p className="text-sm opacity-75">Physics and Machine Learning Enthusiast</p>
+                  <p className="text-sm opacity-75">Entrepreneur, Researcher, and Engineer</p>
+                  <p className="text-xs opacity-60"> Interested in AI, Physics, and CS.</p>
                 </div>
               </div>
 
