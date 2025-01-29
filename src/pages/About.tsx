@@ -238,12 +238,17 @@ const WorkExperienceSection = () => (
 const EducationSection = () => (
   <section className="space-y-4">
     <h2 className="text-2xl font-bold">Education</h2>
-    <div className="p-4 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+    {/* <div className="p-4 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
       <h3 className="text-xl font-semibold">University of Illinois Urbana-Champaign</h3>
       <p className="text-sm opacity-75">2023 - 2026</p>
       <p className="mt-2">
         Studying B.S. in Physics from the Grainger College of Engineering. 3-year graduation.
       </p>
+    </div> */}
+    <div className="space-y-2">
+      <h3 className="text-xl font-semibold">University of Illinois Urbana-Champaign</h3>
+      <p className="text-sm opacity-75">2023 - 2026</p>
+      <h4 className="text-lg">Studying B.S. in Physics from the Grainger College of Engineering. 3-year graduation.</h4>
     </div>
   </section>
 );
