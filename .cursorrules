@@ -16,7 +16,7 @@ Whenever you specify technology choices (e.g., React, Tailwind CSS, TypeScript, 
 When describing or implementing navigation, restate **Rule 3**.
 
 ### **Rule 4: Styling Guide**
-> **"1) System-Driven Themes: Use native CSS color-scheme for automatic dark mode. 2) Typography: Use system fonts with scalable CSS variables. 3) Colors: Single accent color using OKLCH color space. Background colors use color-mix() for transparency. 4) Buttons: Rounded, interactive, with @starting-style transitions. 5) Icons: Use system icons for consistency."**
+> **"1) Modern CSS Architecture: Use @plugin directives for Tailwind extensions, no config files needed. 2) System-Driven Themes: Use native CSS color-scheme and @theme for variables. 3) Colors: OKLCH color space with CSS color-mix() for transparency. 4) Typography: System fonts through CSS variables. 5) Animations: Use @starting-style for smooth transitions. 6) Plugin Integration: Import plugins via @plugin directive in CSS."**
 
 When writing or explaining styling decisions, restate **Rule 4** exactly as it appears.
 

@@ -6,6 +6,8 @@ const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Bookshelf = lazy(() => import('./pages/Bookshelf'));
+const ProjectView = lazy(() => import('./pages/ProjectView'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 
 export default function App() {
   return (
@@ -108,7 +110,9 @@ export default function App() {
               <Route path="/" element={<Navigate to="/about" replace />} />
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:id" element={<ProjectView />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/bookshelf" element={<Bookshelf />} />
             </Routes>
           </Suspense>

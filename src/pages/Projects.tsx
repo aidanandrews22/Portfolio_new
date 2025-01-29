@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import FilterDropdown from '../components/FilterDropdown';
 
 interface Project {
   id: string;
@@ -14,6 +16,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -23,7 +26,6 @@ export default function Projects() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched projects:', data); // Debug log
         setProjects(Array.isArray(data) ? data : []);
         setLoading(false);
       } catch (error) {
@@ -35,6 +37,19 @@ export default function Projects() {
 
     fetchProjects();
   }, []);
+
+  const availableTags = useMemo(() => {
+    const tags = new Set<string>();
+    projects.forEach(project => {
+      project.tags.forEach(tag => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, [projects]);
+
+  const filteredProjects = useMemo(() => {
+    if (!selectedTag) return projects;
+    return projects.filter(project => project.tags.includes(selectedTag));
+  }, [projects, selectedTag]);
 
   if (loading) {
     return (
@@ -68,54 +83,72 @@ export default function Projects() {
       transition={{ duration: 0.5 }}
       className="max-w-4xl mx-auto space-y-8"
     >
-      <h1 className="text-4xl font-bold">Projects</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-4xl font-bold">Projects</h1>
+        <FilterDropdown
+          options={availableTags}
+          selectedOption={selectedTag}
+          onSelect={setSelectedTag}
+          label="Filter by Tag"
+        />
+      </div>
       
       <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project, index) => (
-          <motion.article
+        {filteredProjects.map((project, index) => (
+          <Link
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+            to={`/projects/${project.id}`}
+            className="group"
           >
-            <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-            <p className="mb-4 text-sm/relaxed">{project.description}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tags?.map(tag => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="h-full p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+            >
+              <h2 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{project.title}</h2>
+              <p className="mb-4 text-sm/relaxed">{project.description}</p>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tags?.map(tag => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-            <div className="flex gap-4">
-              {project.githubLink && (
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                >
-                  GitHub →
-                </a>
-              )}
-              {project.demoLink && (
-                <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                >
-                  Live Demo →
-                </a>
-              )}
-            </div>
-          </motion.article>
+              <div className="flex gap-4">
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    GitHub →
+                  </a>
+                )}
+                {project.demoLink && (
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Live Demo →
+                  </a>
+                )}
+                <span className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+                  View Details →
+                </span>
+              </div>
+            </motion.article>
+          </Link>
         ))}
       </div>
     </motion.div>
