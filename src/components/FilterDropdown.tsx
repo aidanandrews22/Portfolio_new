@@ -29,7 +29,7 @@ export default function FilterDropdown({ options, selectedOption, onSelect, labe
         onClick={() => setIsOpen(!isOpen)}
         className="px-4 py-2 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] 
                  hover:border-[color-mix(in_oklch,var(--color-primary)_40%,transparent)] transition-colors
-                 flex items-center justify-between min-w-[160px] bg-[var(--color-background)]"
+                 flex items-center justify-between min-w-[160px] bg-background"
       >
         <span className="mr-2">{label}:</span>
         <span className="font-medium">{selectedOption || 'All'}</span>
@@ -49,7 +49,7 @@ export default function FilterDropdown({ options, selectedOption, onSelect, labe
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute z-10 w-full mt-2 bg-[var(--color-background)]
+            className="absolute z-10 w-full mt-2 bg-background
                      border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] rounded-lg shadow-lg"
           >
             <ul className="py-1">
