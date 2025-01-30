@@ -183,6 +183,9 @@ const WorkExperienceSection = () => (
         <a href="https://vikram.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
           Vikram S. Adve
         </a>.
+        <a href="https://www.aidanandrews.info/projects/work/" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
+          View Code →
+        </a>
       </p>
     </div>
 
