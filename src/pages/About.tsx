@@ -50,6 +50,12 @@ const AboutSection = () => (
       I am deeply committed to using technology to solve complex problems. My academic and recreational projects 
       are where I try to apply my knowledge. I spend all of my time learning, researching, playing chess, and 
       exercising (mainly playing hockey and tennis).
+      
+      {/* <br /> */}
+      {/* <br />Here is a document that contains some of my ideas and daily notes.<br />
+      <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
+        View Notes →
+      </a> */}
     </p>
   </section>
 );
@@ -381,6 +387,13 @@ export default function About() {
       <WorkExperienceSection />
       <ProjectsSection projects={currentProjects} loading={loading} error={error} />
       <RecentBlogSection />
+      <p className="text-lg leading-relaxed">
+        Here is a document that contains some of my ideas and daily notes.<br />
+        <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
+          View Notes →
+        </a>
+      </p>
     </motion.div>
   );
 } 
+
