@@ -151,8 +151,8 @@ export default function Bookshelf() {
       className="max-w-4xl mx-auto space-y-8 p-4"
     >
       <section className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold">My Bookshelf</h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          <h1 className="text-3xl sm:text-4xl font-bold">My Bookshelf</h1>
           <FilterDropdown
             options={categories}
             selectedOption={selectedCategory}

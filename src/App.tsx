@@ -64,7 +64,7 @@ export default function App() {
         </header>
 
         {/* Navigation Bar */}
-        <nav className="sticky top-0 border-b border-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] bg-background/80 backdrop-blur-sm">
+        <nav className="sticky top-0 z-50 border-b border-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="flex justify-center py-3">
               <div className="flex gap-8">
