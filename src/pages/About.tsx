@@ -387,12 +387,12 @@ export default function About() {
       <WorkExperienceSection />
       <ProjectsSection projects={currentProjects} loading={loading} error={error} />
       <RecentBlogSection />
-      <p className="text-lg leading-relaxed">
+      {/* <p className="text-lg leading-relaxed">
         Here is a document that contains some of my ideas and daily notes.<br />
         <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
           View Notes →
         </a>
-      </p>
+      </p> */}
     </motion.div>
   );
 } 
