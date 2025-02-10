@@ -36,7 +36,7 @@ const pdfFiles: PdfFile[] = [
 ];
 
 // Just store the IDs of current projects
-const currentProjectIds = ["illini-plan", "illini-spots"];
+const currentProjectIds = ["illini-plan", "illini-spots", "research-agent"];
 
 const AboutSection = () => (
   <section className="space-y-4">
