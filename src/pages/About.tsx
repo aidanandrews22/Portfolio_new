@@ -425,7 +425,7 @@ const InstagramFeed = () => {
           <div className="p-6 md:w-1/3 flex flex-col justify-center items-center md:border-r border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
             <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
               <img 
-                src="public/assets/About/ig_pfp.jpg" 
+                src="/assets/About/ig_pfp.jpg" 
                 alt="Aidan Andrews" 
                 className="w-full h-full object-cover"
                 onError={(e) => {
