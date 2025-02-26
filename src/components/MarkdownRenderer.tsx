@@ -47,6 +47,34 @@ function CodeBlock({ children, language }: { children: string; language: string 
   );
 }
 
+// Function to extract YouTube video ID from various YouTube URL formats
+function extractYoutubeVideoId(url: string): string | null {
+  try {
+    if (!url || typeof url !== 'string') return null;
+    
+    // Handle youtu.be format
+    if (url.includes('youtu.be/')) {
+      return url.split('youtu.be/')[1]?.split('?')[0] || null;
+    }
+    
+    // Handle youtube.com/watch?v= format
+    if (url.includes('youtube.com/watch')) {
+      const urlParams = new URLSearchParams(url.split('?')[1] || '');
+      return urlParams.get('v');
+    }
+    
+    // Handle youtube.com/embed/ format
+    if (url.includes('youtube.com/embed/')) {
+      return url.split('youtube.com/embed/')[1]?.split('?')[0] || null;
+    }
+    
+    return null;
+  } catch (err) {
+    console.error('Error extracting YouTube video ID:', err);
+    return null;
+  }
+}
+
 export default function MarkdownRenderer({ content, className = '' }: MarkdownRendererProps) {
   return (
     <div className={`prose dark:prose-invert max-w-none ${className}`}>
@@ -72,14 +100,34 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
               </code>
             );
           },
-          a: (props) => (
-            <a
-              {...props}
-              className="text-[var(--color-primary)] hover:opacity-80 transition-opacity"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-          ),
+          a: (props) => {
+            // Check if this is a YouTube link
+            const videoId = extractYoutubeVideoId(props.href || '');
+            
+            if (videoId) {
+              return (
+                <div className="aspect-video w-full my-6 rounded-lg overflow-hidden">
+                  <iframe
+                    className="w-full h-full"
+                    title="YouTube video"
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              );
+            }
+            
+            // Regular link handling
+            return (
+              <a
+                {...props}
+                className="text-[var(--color-primary)] hover:opacity-80 transition-opacity"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            );
+          },
           pre: ({ node, children, ...rest }) => (
             <pre
               {...rest}
@@ -88,6 +136,31 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
               {children}
             </pre>
           ),
+          // Handle img tags to check if they contain YouTube links in alt text
+          img: (props) => {
+            // Check if alt text contains a YouTube marker
+            if (props.alt?.toLowerCase().includes('youtube:')) {
+              const videoUrl = props.alt.split('youtube:')[1]?.trim();
+              const videoId = extractYoutubeVideoId(videoUrl);
+              
+              if (videoId) {
+                return (
+                  <div className="aspect-video w-full my-6 rounded-lg overflow-hidden">
+                    <iframe
+                      className="w-full h-full"
+                      title="YouTube video"
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                );
+              }
+            }
+            
+            // Regular image
+            return <img {...props} className="rounded-lg" />;
+          },
         }}
       >
         {content}

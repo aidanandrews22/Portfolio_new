@@ -10,7 +10,7 @@ interface BlogPost {
   date: string;
   slug: string;
   content: string;
-  tags?: string[];
+  tags?: string[] | string;
 }
 
 export default function BlogPost() {
@@ -34,7 +34,21 @@ export default function BlogPost() {
         
         if (!postMeta) throw new Error('Post metadata not found');
         
-        setPost({ ...postMeta, content });
+        // Ensure tags is an array
+        let processedPostMeta = { ...postMeta };
+        
+        // Handle case where tags might be a string or missing
+        if (typeof processedPostMeta.tags === 'string') {
+          // If it's a comma-separated string, split it
+          processedPostMeta.tags = processedPostMeta.tags.split(',').map((tag: string) => tag.trim());
+        } else if (!processedPostMeta.tags) {
+          processedPostMeta.tags = [];
+        } else if (!Array.isArray(processedPostMeta.tags)) {
+          // If it's neither a string nor an array, set to empty array
+          processedPostMeta.tags = [];
+        }
+        
+        setPost({ ...processedPostMeta, content });
         setLoading(false);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -65,6 +79,19 @@ export default function BlogPost() {
     );
   }
 
+  // Safely get tags as an array
+  const getTags = (): string[] => {
+    try {
+      if (!post.tags) return [];
+      if (Array.isArray(post.tags)) return post.tags;
+      if (typeof post.tags === 'string') return post.tags.split(',').map(tag => tag.trim());
+      return [];
+    } catch (err) {
+      console.error('Error processing tags:', err);
+      return [];
+    }
+  };
+
   return (
     <motion.article
       initial={{ opacity: 0 }}
@@ -80,23 +107,32 @@ export default function BlogPost() {
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">{post.title}</h1>
           <time className="text-sm block" dateTime={post.date}>
-            {new Date(post.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
+            {(() => {
+              try {
+                return new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                });
+              } catch (err) {
+                console.error('Error formatting date:', post.date, err);
+                return post.date;
+              }
+            })()}
           </time>
         </div>
 
         {post.tags && (
           <div className="flex flex-wrap gap-2">
-            {post.tags.map(tag => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-              >
-                {tag}
-              </span>
+            {getTags().map((tag, index) => (
+              tag && typeof tag === 'string' ? (
+                <span
+                  key={`${tag}-${index}`}
+                  className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                >
+                  {tag}
+                </span>
+              ) : null
             ))}
           </div>
         )}

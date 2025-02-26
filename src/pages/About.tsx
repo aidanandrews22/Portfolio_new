@@ -21,11 +21,10 @@ interface Project {
 interface BlogPost {
   id: string;
   title: string;
-  description: string;
+  summary: string;
   date: string;
   slug: string;
-  category: string;
-  tags?: string[];
+  tags: string[] | string;
 }
 
 const pdfFiles: PdfFile[] = [
@@ -273,11 +272,40 @@ const RecentBlogSection = () => {
         const response = await fetch('https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/posts.json');
         if (!response.ok) throw new Error('Failed to fetch blog posts');
         const posts = await response.json();
+        
         // Sort posts by date and get the most recent one
-        const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => 
-          new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-        setRecentPost(sortedPosts[0]);
+        try {
+          const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => {
+            try {
+              return new Date(b.date).getTime() - new Date(a.date).getTime();
+            } catch (err) {
+              console.error('Error sorting post dates:', err);
+              return 0; // Keep original order if date comparison fails
+            }
+          });
+          
+          if (sortedPosts && sortedPosts.length > 0) {
+            // Process the post to ensure tags is an array
+            const recentPost = { ...sortedPosts[0] };
+            
+            // Handle case where tags might be a string or missing
+            if (typeof recentPost.tags === 'string') {
+              recentPost.tags = recentPost.tags.split(',').map((tag: string) => tag.trim());
+            } else if (!recentPost.tags) {
+              recentPost.tags = [];
+            } else if (!Array.isArray(recentPost.tags)) {
+              recentPost.tags = [];
+            }
+            
+            setRecentPost(recentPost);
+          } else {
+            throw new Error('No blog posts found');
+          }
+        } catch (err) {
+          console.error('Error processing posts data:', err);
+          throw err;
+        }
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching recent blog post:', error);
@@ -288,6 +316,19 @@ const RecentBlogSection = () => {
 
     fetchRecentPost();
   }, []);
+
+  // Safely get tags as an array
+  const getTags = (post: BlogPost): string[] => {
+    try {
+      if (!post.tags) return [];
+      if (Array.isArray(post.tags)) return post.tags;
+      if (typeof post.tags === 'string') return post.tags.split(',').map(tag => tag.trim());
+      return [];
+    } catch (err) {
+      console.error('Error processing tags:', err);
+      return [];
+    }
+  };
 
   if (loading) return <section className="space-y-4"><h2 className="text-2xl font-bold">Recent Blog Post</h2><p>Loading...</p></section>;
   if (error) return <section className="space-y-4"><h2 className="text-2xl font-bold">Recent Blog Post</h2><p className="text-red-500">{error}</p></section>;
@@ -313,29 +354,37 @@ const RecentBlogSection = () => {
           className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
         >
           <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title}</h3>
-            <time className="text-sm" dateTime={recentPost.date}>
-              {new Date(recentPost.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </time>
+            <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
+            {recentPost.date && (
+              <time className="text-sm" dateTime={recentPost.date}>
+                {(() => {
+                  try {
+                    return new Date(recentPost.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    });
+                  } catch (err) {
+                    console.error('Error formatting date:', recentPost.date, err);
+                    return recentPost.date;
+                  }
+                })()}
+              </time>
+            )}
           </div>
           
-          <p className="mb-4 text-sm/relaxed">{recentPost.description}</p>
+          <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
           
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
-              {recentPost.category}
-            </span>
-            {recentPost.tags && recentPost.tags.map(tag => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-              >
-                {tag}
-              </span>
+          <div className="flex items-center gap-2 flex-wrap">
+            {getTags(recentPost).map((tag, tagIndex) => (
+              tag && typeof tag === 'string' ? (
+                <span
+                  key={`${tag}-${tagIndex}`}
+                  className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                >
+                  {tag}
+                </span>
+              ) : null
             ))}
           </div>
           
@@ -344,6 +393,83 @@ const RecentBlogSection = () => {
           </span>
         </motion.article>
       </Link>
+    </section>
+  );
+};
+
+const InstagramFeed = () => {
+  useEffect(() => {
+    // Create and load the Behold script
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://w.behold.so/widget.js';
+    document.head.appendChild(script);
+
+    // Clean up function to remove the script when component unmounts
+    return () => {
+      if (script && document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
+  return (
+    <section className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Instagram Feed</h2>
+      </div>
+      
+      <div className="border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] rounded-lg overflow-hidden">
+        <div className="flex flex-col md:flex-row">
+          {/* Profile Info Section */}
+          <div className="p-6 md:w-1/3 flex flex-col justify-center items-center md:border-r border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
+              <img 
+                src="public/assets/About/ig_pfp.jpg" 
+                alt="Aidan Andrews" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://placehold.co/200x200?text=AA';
+                }}
+              />
+            </div>
+            
+            <a 
+              href="https://www.instagram.com/aidanandrewss/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-lg font-semibold hover:text-[var(--color-primary)] transition-colors"
+            >
+              @aidanandrewss
+            </a>
+            
+            <div className="flex gap-4 mt-4 text-sm">
+              <div className="text-center">
+                <div className="font-semibold">50+</div>
+                <div className="opacity-75">Posts</div>
+              </div>
+              <div className="text-center">
+                <div className="font-semibold">2,000+</div>
+                <div className="opacity-75">Followers</div>
+              </div>
+            </div>
+            
+            <a 
+              href="https://www.instagram.com/aidanandrewss/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-6 px-4 py-2 text-sm rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_25%,transparent)] transition-colors"
+            >
+              View Profile
+            </a>
+          </div>
+          
+          {/* Behold Widget Section */}
+          <div className="md:w-2/3 p-4">
+            <div data-behold-id="4rd4S35EClbGiv4HjWHq" className="w-full h-full"></div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
@@ -387,6 +513,7 @@ export default function About() {
       <WorkExperienceSection />
       <ProjectsSection projects={currentProjects} loading={loading} error={error} />
       <RecentBlogSection />
+      <InstagramFeed />
       {/* <p className="text-lg leading-relaxed">
         Here is a document that contains some of my ideas and daily notes.<br />
         <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
