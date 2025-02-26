@@ -1,32 +1,32 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MarkdownRenderer from '../components/MarkdownRenderer';
 
 interface BlogPost {
   id: string;
   title: string;
-  description: string;
+  description?: string;
+  summary?: string;
   date: string;
-  slug: string;
+  slug?: string;
   content: string;
   tags?: string[] | string;
+  type: 'md' | 'pdf';
 }
 
 export default function BlogPost() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [markdownContent, setMarkdownContent] = useState<string>('');
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/posts/${id}.md`);
-        if (!response.ok) throw new Error('Post not found');
-        const content = await response.text();
-        
-        // Fetch post metadata
+        // Fetch post metadata first
         const metaResponse = await fetch('https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/posts.json');
         if (!metaResponse.ok) throw new Error('Failed to fetch post metadata');
         const posts = await metaResponse.json();
@@ -48,7 +48,22 @@ export default function BlogPost() {
           processedPostMeta.tags = [];
         }
         
-        setPost({ ...processedPostMeta, content });
+        // Handle different content types
+        if (processedPostMeta.type === 'pdf') {
+          // For PDF posts, redirect to the PDF URL
+          window.open(`https://aidanandrews22.github.io/${processedPostMeta.content}`, '_blank', 'noopener noreferrer');
+          // Navigate back to the blog page
+          navigate('/blog');
+          return;
+        } else {
+          // For markdown posts, fetch the content
+          const contentResponse = await fetch(`https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/${processedPostMeta.content}`);
+          if (!contentResponse.ok) throw new Error('Post content not found');
+          const content = await contentResponse.text();
+          setMarkdownContent(content);
+        }
+        
+        setPost(processedPostMeta);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -58,7 +73,7 @@ export default function BlogPost() {
     };
 
     if (id) fetchPost();
-  }, [id]);
+  }, [id, navigate]);
 
   if (loading) {
     return (
@@ -105,7 +120,14 @@ export default function BlogPost() {
         </a>
         
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold">{post.title}</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-4xl font-bold">{post.title}</h1>
+            {post.type && (
+              <span className="px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] flex items-center gap-1">
+                {post.type.toUpperCase()}
+              </span>
+            )}
+          </div>
           <time className="text-sm block" dateTime={post.date}>
             {(() => {
               try {
@@ -139,7 +161,7 @@ export default function BlogPost() {
       </div>
 
       <MarkdownRenderer 
-        content={post.content}
+        content={markdownContent}
         className="mt-8"
       />
     </motion.article>

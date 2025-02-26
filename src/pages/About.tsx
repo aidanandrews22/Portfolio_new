@@ -25,6 +25,8 @@ interface BlogPost {
   date: string;
   slug: string;
   tags: string[] | string;
+  content: string;
+  type?: 'md' | 'pdf';
 }
 
 const pdfFiles: PdfFile[] = [
@@ -343,56 +345,129 @@ const RecentBlogSection = () => {
         </Link>
       </div>
       
-      <Link
-        to={`/blog/${recentPost.id}`}
-        className="block group"
-      >
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+      {recentPost.type === 'pdf' ? (
+        // For PDF posts, use a div with onClick instead of Link
+        <div
+          onClick={() => window.open(`https://aidanandrews22.github.io/${recentPost.content}`, '_blank', 'noopener noreferrer')}
+          className="block group cursor-pointer"
         >
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
-            {recentPost.date && (
-              <time className="text-sm" dateTime={recentPost.date}>
-                {(() => {
-                  try {
-                    return new Date(recentPost.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    });
-                  } catch (err) {
-                    console.error('Error formatting date:', recentPost.date, err);
-                    return recentPost.date;
-                  }
-                })()}
-              </time>
-            )}
-          </div>
-          
-          <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
-          
-          <div className="flex items-center gap-2 flex-wrap">
-            {getTags(recentPost).map((tag, tagIndex) => (
-              tag && typeof tag === 'string' ? (
-                <span
-                  key={`${tag}-${tagIndex}`}
-                  className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-                >
-                  {tag}
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+          >
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex items-center gap-2">
+                <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
+                <span className="px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  PDF
                 </span>
-              ) : null
-            ))}
-          </div>
-          
-          <span className="inline-block mt-4 text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
-            Read more →
-          </span>
-        </motion.article>
-      </Link>
+              </div>
+              {recentPost.date && (
+                <time className="text-sm" dateTime={recentPost.date}>
+                  {(() => {
+                    try {
+                      return new Date(recentPost.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      });
+                    } catch (err) {
+                      console.error('Error formatting date:', recentPost.date, err);
+                      return recentPost.date;
+                    }
+                  })()}
+                </time>
+              )}
+            </div>
+            
+            <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
+            
+            <div className="flex items-center gap-2 flex-wrap">
+              {getTags(recentPost).map((tag, tagIndex) => (
+                tag && typeof tag === 'string' ? (
+                  <span
+                    key={`${tag}-${tagIndex}`}
+                    className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                  >
+                    {tag}
+                  </span>
+                ) : null
+              ))}
+            </div>
+            
+            <span className="inline-flex items-center mt-4 text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+              Open PDF in new tab
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </span>
+          </motion.article>
+        </div>
+      ) : (
+        // For markdown posts, use Link as before
+        <Link
+          to={`/blog/${recentPost.id}`}
+          className="block group"
+        >
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+          >
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex items-center gap-2">
+                <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
+                {recentPost.type === 'md' && (
+                  <span className="px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+                    MD
+                  </span>
+                )}
+              </div>
+              {recentPost.date && (
+                <time className="text-sm" dateTime={recentPost.date}>
+                  {(() => {
+                    try {
+                      return new Date(recentPost.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      });
+                    } catch (err) {
+                      console.error('Error formatting date:', recentPost.date, err);
+                      return recentPost.date;
+                    }
+                  })()}
+                </time>
+              )}
+            </div>
+            
+            <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
+            
+            <div className="flex items-center gap-2 flex-wrap">
+              {getTags(recentPost).map((tag, tagIndex) => (
+                tag && typeof tag === 'string' ? (
+                  <span
+                    key={`${tag}-${tagIndex}`}
+                    className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                  >
+                    {tag}
+                  </span>
+                ) : null
+              ))}
+            </div>
+            
+            <span className="inline-block mt-4 text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+              Read more →
+            </span>
+          </motion.article>
+        </Link>
+      )}
     </section>
   );
 };
