@@ -76,7 +76,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       return (
         <div className="min-h-screen flex items-center justify-center bg-background text-foreground p-4">
           <div className="w-full max-w-md p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-background shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Unexpected Error...</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Unexpected Error... Try refreshing the page.</h2>
             <p className="mb-6">
               Sorry about this, i guess my code is not as good as i thought.<br />
               <span className="text-red-500">PLEASE SUBMIT THIS SO I CAN FIX IT!!!</span>

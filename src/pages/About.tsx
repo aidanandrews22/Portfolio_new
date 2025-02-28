@@ -37,228 +37,593 @@ const pdfFiles: PdfFile[] = [
 ];
 
 // Just store the IDs of current projects
-const currentProjectIds = ["illini-plan", "illini-spots", "research-agent"];
+const currentProjectIds = ["voxed", "illini-plan", "illini-spots", "research-agent"];
 
 const AboutSection = () => (
-  <section className="space-y-4">
-    <h1 className="text-4xl font-bold">About Me</h1>
-    <p className="text-lg leading-relaxed">
-      I stream myself working on{' '}
-      <a href="https://www.youtube.com/@aidanandrews/streams" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-        youtube
-      </a>. 
-      As a current student and a researcher focused on machine learning applications in physics and biology, 
-      I am deeply committed to using technology to solve complex problems. My academic and recreational projects 
-      are where I try to apply my knowledge. I spend all of my time learning, researching, playing chess, and 
-      exercising (mainly playing hockey and tennis).
+  <section className="relative">
+    {/* Hero section with background */}
+    <div className="relative mb-12 rounded-2xl overflow-hidden">
+      {/* Placeholder for hero image - replace with a personal photo */}
+      <div className="h-100">
+        <img 
+          src="/assets/About/cover.jpg" 
+          alt="Aidan Andrews" 
+          className="w-full h-full object-cover object-right dark:brightness-75"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
+      </div>
       
-      {/* <br /> */}
-      {/* <br />Here is a document that contains some of my ideas and daily notes.<br />
-      <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-        View Notes →
-      </a> */}
-    </p>
+      {/* Overlay with intro text */}
+      <div className="absolute inset-0 flex flex-col justify-end py-8 px-8 md:px-12 md:pt-60 bg-gradient-to-t from-[color-mix(in_oklch,black_50%,transparent)] to-transparent dark:from-[color-mix(in_oklch,black_70%,transparent)]">
+        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">Aidan Andrews</h1>
+        <p className="text-xl md:text-2xl opacity-90 font-light text-white">Student. Researcher. Builder.</p>
+      </div>
+    </div>
+
+    {/* Documents quick links */}
+    <div className="mt-8 mb-8 pb-6 border-b border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+      <h3 className="text-lg font-semibold mb-4">Important Documents</h3>
+      <div className="flex flex-wrap gap-3">
+        {pdfFiles.map(pdf => (
+          <a
+            key={pdf.name}
+            href={`https://aidanandrews22.github.io/content/pdf/${pdf.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+            className="px-4 py-2 text-sm rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] transition-colors"
+              >
+                {pdf.label}
+              </a>
+        ))}
+      </div>
+    </div>
+    
+    {/* Personal introduction */}
+    <div className="space-y-6">
+      <div className="prose prose-lg max-w-none">
+        <p className="text-xl leading-relaxed">
+          I'm passionate about solving difficult, thought-provoking problems at the intersection of machine learning, 
+          computer vision, and their applications to fields like physics, bio, and every day life.
+        </p>
+        
+    <p className="text-lg leading-relaxed">
+          At my core, I believe in trying my absolute hardest in every facet of life. This philosophy extends to my 
+          academic pursuits, entrepreneurial ventures, athletic endeavors, and personal projects. I'm constantly 
+          seeking to learn and grow — not for personal accolades, but because I genuinely believe that becoming 
+          the best version of myself allows me to better serve those around me.
+        </p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div className="p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+          <h3 className="text-xl font-semibold mb-3">Tech Expertise</h3>
+          <p className="text-sm/relaxed">
+            Full-stack development, machine learning algorithms, computer vision systems, and LLM applications for practical solutions.
+          </p>
+        </div>
+        
+        <div className="p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+          <h3 className="text-xl font-semibold mb-3">Athletics</h3>
+          <p className="text-sm/relaxed">
+            I play D1 hockey for the University of Illinois, tennis semi-competitively, and run occasionally (training for a marathon soon).
+          </p>
+        </div>
+        
+        <div className="p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+          <h3 className="text-xl font-semibold mb-3">In my free time</h3>
+          <p className="text-sm/relaxed">
+            I am an avid chess player. Currently working toward becoming a titled master (most realistically, a CM). Also, soon to be hackathon winner.
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex justify-center mt-8">
+        <a href="https://www.youtube.com/@aidanandrews/streams" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-5 py-2.5 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_25%,transparent)] transition-colors text-[var(--color-primary)]">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+          </svg>
+          Watch me work on Youtube
+        </a>
+      </div>
+    </div>
   </section>
 );
 
 const ProjectsSection = ({ projects, loading, error }: { projects: Project[], loading: boolean, error: string | null }) => (
-  <section className="space-y-4">
+  <section className="space-y-6">
     <div className="flex justify-between items-center">
-      <h2 className="text-2xl font-bold">Current Projects</h2>
-      <Link to="/projects" className="text-sm hover:text-[var(--color-primary)] transition-colors">
-        View all projects →
+      <h2 className="text-3xl font-bold">Current Projects</h2>
+      <Link to="/projects" className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors">
+        View all →
       </Link>
     </div>
-    {loading ? (
-      <p>Loading projects...</p>
-    ) : error ? (
-      <p className="text-red-500">Error: {error}</p>
-    ) : (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {projects.map((project) => (
-          <motion.article
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="h-full p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors group cursor-pointer"
-            onClick={() => window.location.href = `/projects/${project.id}`}
-          >
-            <div className="flex flex-col h-full">
-              <h2 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{project.title}</h2>
-              <p className="mb-4 text-sm/relaxed">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags?.map(tag => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-4 mt-auto">
-                {project.githubLink && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.open(project.githubLink, '_blank', 'noopener noreferrer');
-                    }}
-                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    GitHub →
-                  </button>
-                )}
-                {project.demoLink && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.open(project.demoLink, '_blank', 'noopener noreferrer');
-                    }}
-                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    Live Demo →
-                  </button>
-                )}
-                <span 
-                  className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity ml-auto"
-                >
-                  View Details →
-                </span>
-              </div>
-            </div>
-          </motion.article>
-        ))}
+    
+    <div className="space-y-6">
+      <div className="prose prose-lg max-w-none">
+        <p className="leading-relaxed">
+          Building meaningful projects is how I translate my ideas into reality. Each project represents a problem 
+          I found worth solving or a question I wanted to explore. While I have many interests, these featured projects 
+          showcase my current focus on creating practical tools that help people learn, work, and research more effectively.
+        </p>
       </div>
-    )}
+      
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--color-primary)]"></div>
+        </div>
+      ) : error ? (
+        <div className="p-6 rounded-xl border border-red-300 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400">
+          <p>Error: {error}</p>
+          <p className="mt-2 text-sm">Please try refreshing the page or check back later.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="group h-full"
+              onClick={() => window.location.href = `/projects/${project.id}`}
+            >
+              <div className="h-full p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg transition-all cursor-pointer relative overflow-hidden">
+                {/* Background gradient overlay */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] to-transparent rounded-bl-full opacity-50"></div>
+                
+                {/* Project content */}
+                <div className="relative">
+                  <h3 className="text-xl font-bold group-hover:text-[var(--color-primary)] transition-colors mb-2">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-sm/relaxed mb-4 line-clamp-3">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags?.map(tag => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-auto">
+                    {project.githubLink && (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.githubLink, '_blank', 'noopener noreferrer');
+                        }}
+                        className="text-sm hover:text-[var(--color-primary)] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                      </button>
+                    )}
+                    
+                    {project.demoLink && (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.demoLink, '_blank', 'noopener noreferrer');
+                        }}
+                        className="text-sm hover:text-[var(--color-primary)] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Live Demo
+                      </button>
+                    )}
+                    
+                    <span 
+                      className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity ml-auto inline-flex items-center gap-1"
+                    >
+                      View Project
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
+      
+      <div className="text-center pt-4">
+        <p className="text-sm opacity-80 italic">
+          These projects are just a small sample of my work. I'm constantly building and experimenting with new ideas.
+          Check out my GitHub for more or reach out if you'd like to collaborate!
+        </p>
+      </div>
+    </div>
   </section>
 );
 
-const DocumentsSection = () => {
-  const renderPdfGroup = (group: 'transcript' | 'other') => (
-    <div className="flex flex-col">
-      <h3 className="font-semibold mb-2">{group === 'transcript' ? 'Transcripts' : 'Professional'}</h3>
-      {pdfFiles
-        .filter(pdf => pdf.group === group)
-        .map(pdf => {
-          const staticUrl = `https://aidanandrews22.github.io/content/pdf/${pdf.name}`;
-          return (
-            <div key={pdf.name} className="mb-2">
-              <a
-                href={staticUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline"
-              >
-                {pdf.label}
-              </a>
-              <span className="text-xs opacity-75">
-                &#160; Last updated: {pdf.lastUpdated}
-              </span>
-            </div>
-          );
-        })}
-    </div>
-  );
-
-  return (
-    <section className="space-y-4">
-      <h2 className="text-2xl font-bold">Documents</h2>
-      <div className="flex justify-between flex-wrap gap-8">
-        {renderPdfGroup('transcript')}
-        {renderPdfGroup('other')}
+const WhatDrivesMe = () => (
+  <section className="space-y-6">
+    <h2 className="text-3xl font-bold">What Drives Me</h2>
+    
+    <div className="relative">
+      {/* Quote block */}
+      <div className="pl-6 border-l-4 border-[var(--color-primary)] py-1">
+        <p className="text-xl italic font-light">
+          "I approach every challenge with a dedication to positive impact, safety, and a deep respect for the nuance of research."
+        </p>
       </div>
-    </section>
-  );
-};
+      
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left column - text */}
+        <div className="space-y-4">
+          <p className="leading-relaxed">
+            This mindset has guided me through developing various apps that help people solve real world issues, 
+            building ML systems that support tens of thousands of users, and creating a clothing brand focused on mental health awareness.
+          </p>
+          
+          <p className="leading-relaxed">
+            I'm constantly working toward my long-term goals of advancing my education, expanding my research capabilities, 
+            and creating technology that makes a meaningful difference. I believe in the transformative potential of AI when 
+            developed responsibly, and I'm committed to being part of that positive transformation.
+          </p>
+        </div>
+        
+        {/* Right column - image */}
+        <div className="relative rounded-xl overflow-hidden h-64 md:h-auto">
+          {/* Placeholder for a personal image - perhaps working on a project */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] to-transparent z-10"></div>
+          <img 
+            src="/assets/About/drive.jpg" 
+            alt="Aidan working on a project" 
+            className="w-full h-full object-cover object-top"
+            onError={(e) => {
+              (e.target as HTMLImageElement).parentElement!.classList.add('bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]');
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
 const WorkExperienceSection = () => (
   <section className="space-y-6">
-    <h2 className="text-2xl font-bold">Work Experience</h2>
+    <h2 className="text-3xl font-bold">Work Experience</h2>
     
-    <div className="space-y-2">
+    <div className="grid grid-cols-1 gap-8">
+      {/* AAXIOM */}
+      <div className="p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg">
+        <div className="flex flex-col md:flex-row md:items-start gap-4">
+          <div className="md:w-1/4">
+            <div className="inline-flex items-center justify-center w-16 h-16">
+              <img src="/assets/About/AAXIOM-02.png" alt="AAXIOM Logo" className="w-full h-full object-contain" />
+            </div>
+            <p className="text-sm mt-2 opacity-75">Nov 2024 - Present</p>
+          </div>
+          
+          <div className="md:w-3/4">
+            <h3 className="text-xl font-semibold">AAXIOM</h3>
+            <p className="text-base font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">Founder & Sole Developer</p>
+            
+            <p className="mt-3 text-sm/relaxed">
+              AAXIOM is a parent company for a multitude of projects, including a clothing brand, 3 web apps, an ios app, and much much more...
+            </p>
+            
+            <div className="mt-4 flex flex-wrap gap-2">              
+              <a href="https://www.aaxiom.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs px-3 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] transition-colors">
+                <span>View Site →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* AIFARMS */}
+      <div className="p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg">
+        <div className="flex flex-col md:flex-row md:items-start gap-4">
+          <div className="md:w-1/4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <p className="text-sm mt-2 opacity-75">Nov 2024 - Present</p>
+          </div>
+          
+          <div className="md:w-3/4">
       <h3 className="text-xl font-semibold">AIFARMS National Al Institute & Center for Digital Agriculture</h3>
-      <h4 className="text-lg">AI/ML Research Intern</h4>
-      <p className="text-sm opacity-75">Nov 2024 - Present</p>
-      <p className="mt-2">
-        Developing a plethora of tools (eg. pest detection, crop optimization, local climate implications, etc.) for LLM use in production scale chatbots to create a more agentic workflow. Agents are used to increase efficiency of current agricultural practices at scale.
-        <br />Working under Professor{' '}
-        <a href="https://vikram.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-          Vikram S. Adve
-        </a>.
-        <a href="https://www.aidanandrews.info/projects/work/" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-          View Code →
-        </a>
-      </p>
+            <p className="text-base font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">AI/ML Research Intern</p>
+            
+            <p className="mt-3 text-sm/relaxed">
+              Developing a plethora of tools (eg. pest detection, crop optimization, local climate implications) for LLM use in production scale chatbots to create a more agentic workflow. Agents are used to increase efficiency of current agricultural practices at scale.
+            </p>
+            
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a href="https://vikram.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs px-3 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] transition-colors">
+                <span>Prof. Vikram S. Adve</span>
+              </a>
+              
+              <a href="https://www.aidanandrews.info/projects/work/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs px-3 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] transition-colors">
+                <span>View Code →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Startup */}
+      <div className="p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg">
+        <div className="flex flex-col md:flex-row md:items-start gap-4">
+          <div className="md:w-1/4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <p className="text-sm mt-2 opacity-75">May 2024 - Aug 2024</p>
     </div>
 
-    <div className="space-y-2">
-      <h3 className="text-xl font-semibold">Startup (signed an NDA)</h3>
-      <h4 className="text-lg">Machine Learning Researcher/Engineer</h4>
-      <p className="text-sm opacity-75">May 2024 - Aug 2024</p>
-      <p className="mt-2">
-        I developed advanced Natural Language Processing (NLP) systems, focusing on optimizing Retrieval-Augmented Generation (RAG) and enhancing intent classification. I designed and implemented a novel "wavular" RAG approach and a hybrid embedding-based classification system, demonstrating proficiency in large-scale information retrieval, machine learning, and deep learning methodologies.
-        <br /><strong>Research Paper:</strong>{' '}
-        <a href="https://aidanandrews.info/blog/ml130824" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-          Optimizing Natural Language Processing Systems: Advanced RAG and Intent Classification
-        </a>
-      </p>
+          <div className="md:w-3/4">
+            <h3 className="text-xl font-semibold">Startup <span className="text-sm font-normal opacity-75">(signed an NDA)</span></h3>
+            <p className="text-base font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">Machine Learning Researcher/Engineer</p>
+            
+            <p className="mt-3 text-sm/relaxed">
+              I developed advanced Natural Language Processing (NLP) systems, focusing on optimizing Retrieval-Augmented Generation (RAG) and enhancing intent classification. I designed and implemented a novel "wavular" RAG approach and a hybrid embedding-based classification system.
+            </p>
+            
+            <div className="mt-4">
+              <a href="https://aidanandrews.info/blog/ml130824" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs px-3 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] transition-colors">
+                <span>Research Paper →</span>
+              </a>
+            </div>
+          </div>
+        </div>
     </div>
 
+      {/* Other experiences as expandable section */}
+      <div className="p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+        <details className="group">
+          <summary className="cursor-pointer list-none flex justify-between items-center">
+            <h3 className="text-xl font-semibold">Other Experiences</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          
+          <div className="mt-4 space-y-6 pl-4 border-l-2 border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)]">
+            {/* Dr. Andrews */}
     <div className="space-y-2">
-      <h3 className="text-xl font-semibold">Dr. Andrews Plastic Surgery</h3>
-      <h4 className="text-lg">Machine Learning Researcher/Intern</h4>
-      <p className="text-sm opacity-75">2024 - Present</p>
-      <p className="mt-2">
+              <h4 className="text-lg font-semibold">Dr. Andrews Plastic Surgery</h4>
+              <p className="text-sm font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">Machine Learning Researcher/Intern <span className="opacity-75">• 2024 - Present</span></p>
+              <p className="text-sm/relaxed">
         Researching machine learning models to predict the effectiveness of procedures based off of a generalized
-        score given to patients. Essentially, the model will take variables like age, gender, resting heart rate,
-        and a plethera of other medically derived data like medications. Then uses previous patient data to predict
-        how effective a procedure will be given the patients input variable, then quantifying the result as a normalized
-        score.
+                score given to patients. The model takes variables like age, gender, resting heart rate, and a plethera of other medically derived data,
+                then uses previous patient data to predict effectiveness, quantifying results as a normalized score.
       </p>
     </div>
 
+            {/* Grainger */}
     <div className="space-y-2">
-      <h3 className="text-xl font-semibold">The Grainger College of Engineering</h3>
-      <h4 className="text-lg">Project Manager & Course Assistant</h4>
-      <p className="text-sm opacity-75">December 2023 - May 2024</p>
-      <p className="mt-2">
+              <h4 className="text-lg font-semibold">The Grainger College of Engineering</h4>
+              <p className="text-sm font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">Project Manager & Course Assistant <span className="opacity-75">• December 2023 - May 2024</span></p>
+              <p className="text-sm/relaxed">
         Managing projects and assisting courses within the CS department, focusing on enhancing 
         the educational experiences of undergraduate students through innovative approaches and technologies.
       </p>
     </div>
 
+            {/* NVRALONE */}
     <div className="space-y-2">
-      <h3 className="text-xl font-semibold">NVRALONE</h3>
-      <h4 className="text-lg">Founder & CEO</h4>
-      <p className="text-sm opacity-75">2023 - Present</p>
-      <p className="mt-2">
+              <h4 className="text-lg font-semibold">NVRALONE</h4>
+              <p className="text-sm font-medium text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">Founder & CEO <span className="opacity-75">• 2023 - Present</span></p>
+              <p className="text-sm/relaxed">
         Successfully led a clothing brand to $10,000 in profit per month, raised money for suicide prevention, 
-        managed teams of over 20 employees, orchestrated pop-up shops, and developed and managed the website 
+                managed teams of over 20 employees, orchestrated pop-up shops, and developed the website 
         including customer acquisition algorithms.
       </p>
+            </div>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 );
 
 const EducationSection = () => (
-  <section className="space-y-4">
-    <h2 className="text-2xl font-bold">Education</h2>
-    {/* <div className="p-4 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
-      <h3 className="text-xl font-semibold">University of Illinois Urbana-Champaign</h3>
-      <p className="text-sm opacity-75">2023 - 2026</p>
-      <p className="mt-2">
-        Studying B.S. in Physics from the Grainger College of Engineering. 3-year graduation.
-      </p>
-    </div> */}
+  <section className="space-y-6">
+    <h2 className="text-3xl font-bold">Education</h2>
+    
+    <div className="p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all hover:shadow-lg">
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Left side - Logo/Icon */}
+        <div className="md:w-1/4 flex flex-col items-center">
+          <div className="w-32 h-32 rounded-lg overflow-hidden relative">
+            {/* Logo placeholder */}
+            <img 
+              src="/assets/About/uiuc-logo.png" 
+              alt="UIUC Logo" 
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+                // Add a fallback text element
+                const parent = (e.target as HTMLImageElement).parentElement;
+                if (parent) {
+                  const text = document.createElement('div');
+                  text.className = 'absolute inset-0 flex items-center justify-center text-2xl font-bold text-[var(--color-primary)]';
+                  text.textContent = 'UIUC';
+                  parent.appendChild(text);
+                }
+              }}
+            />
+          </div>
+          <div className="mt-4 text-center">
+            <span className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+              3.9 GPA
+            </span>
+          </div>
+        </div>
+        
+        {/* Right side - Details */}
+        <div className="md:w-3/4">
+          <h3 className="text-2xl font-bold text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)]">
+            University of Illinois Urbana-Champaign
+          </h3>
+          <p className="text-lg font-semibold mt-1">B.S. in Physics, The Grainger College of Engineering</p>          
+          <div className="mt-6 space-y-4">
+            <div className="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[var(--color-primary)] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <div>
+                <p className="font-medium">Accelerated Program</p>
+                <p className="text-sm opacity-75">On track to graduate in 3 years instead of the traditional 4-year program.</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[var(--color-primary)] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <div>
+                <p className="font-medium">Research Focus</p>
+                <p className="text-sm opacity-75">Emphasis on machine learning applications in physics and computational methods.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const TechnicalExpertiseSection = () => (
+  <section className="space-y-6">
+    <h2 className="text-3xl font-bold">Technical Expertise</h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Left column - Primary skills */}
+      <div className="col-span-2 p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all">
+        <h3 className="text-xl font-semibold mb-4">Core Skills</h3>
+        
+        <div className="space-y-6">
+          {/* Machine Learning */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="font-medium">Machine Learning & AI</h4>
+              <span className="text-xs px-2 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">Advanced</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['CNNs', 'Transformers', 'RAG', 'LLMs', 'Computer Vision', 'NLP', 'PyTorch', 'TensorFlow'].map(skill => (
+                <span key={skill} className="px-2 py-1 text-xs rounded-md bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          {/* Software Development */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="font-medium">Software Development</h4>
+              <span className="text-xs px-2 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">Advanced</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['Python', 'JavaScript/TypeScript', 'React', 'Node.js', 'SQL', 'Git', 'Docker', 'System Design'].map(skill => (
+                <span key={skill} className="px-2 py-1 text-xs rounded-md bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          {/* Physics & Math */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="font-medium">Physics & Mathematics</h4>
+              <span className="text-xs px-2 py-1 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">Advanced</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['Quantum Mechanics', 'Statistical Mechanics', 'Linear Algebra', 'Calculus', 'Differential Equations', 'Data Analysis'].map(skill => (
+                <span key={skill} className="px-2 py-1 text-xs rounded-md bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Right column - Progress bars for languages */}
+      <div className="p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
+        <h3 className="text-xl font-semibold mb-4">Languages</h3>
+        
+        <div className="space-y-6">
+          {/* Python */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="font-medium">Python</span>
+              <span className="text-xs">95%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+              <div className="h-full rounded-full bg-[var(--color-primary)]" style={{ width: '95%' }}></div>
+            </div>
+          </div>
+          
+          {/* JavaScript/TypeScript */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="font-medium">JavaScript/TypeScript</span>
+              <span className="text-xs">90%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+              <div className="h-full rounded-full bg-[var(--color-primary)]" style={{ width: '90%' }}></div>
+            </div>
+          </div>
+          
+          {/* C++ */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="font-medium">C/C++</span>
+              <span className="text-xs">85%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+              <div className="h-full rounded-full bg-[var(--color-primary)]" style={{ width: '85%' }}></div>
+            </div>
+          </div>
+          
+          {/* Java */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="font-medium">Java</span>
+              <span className="text-xs">80%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+              <div className="h-full rounded-full bg-[var(--color-primary)]" style={{ width: '80%' }}></div>
+            </div>
+          </div>
+          
+          {/* SQL */}
     <div className="space-y-2">
-      <h3 className="text-xl font-semibold">University of Illinois Urbana-Champaign</h3>
-      <p className="text-sm opacity-75">2023 - 2026</p>
-      <h4 className="text-lg">Studying B.S. in Physics from the Grainger College of Engineering. 3-year graduation.</h4>
+            <div className="flex justify-between items-center">
+              <span className="font-medium">SQL</span>
+              <span className="text-xs">85%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
+              <div className="h-full rounded-full bg-[var(--color-primary)]" style={{ width: '85%' }}></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 );
@@ -332,62 +697,99 @@ const RecentBlogSection = () => {
     }
   };
 
-  if (loading) return <section className="space-y-4"><h2 className="text-2xl font-bold">Recent Blog Post</h2><p>Loading...</p></section>;
-  if (error) return <section className="space-y-4"><h2 className="text-2xl font-bold">Recent Blog Post</h2><p className="text-red-500">{error}</p></section>;
+  const formatDate = (dateString: string): string => {
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch (err) {
+      console.error('Error formatting date:', dateString, err);
+      return dateString;
+    }
+  };
+
+  if (loading) return (
+    <section className="space-y-6">
+      <h2 className="text-3xl font-bold">Recent Blog Post</h2>
+      <div className="flex justify-center items-center h-40">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--color-primary)]"></div>
+      </div>
+    </section>
+  );
+  
+  if (error) return (
+    <section className="space-y-6">
+      <h2 className="text-3xl font-bold">Recent Blog Post</h2>
+      <div className="p-6 rounded-xl border border-red-300 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400">
+        <p>{error}</p>
+        <p className="mt-2 text-sm">Please try refreshing the page or check back later.</p>
+      </div>
+    </section>
+  );
+  
   if (!recentPost) return null;
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Recent Blog Post</h2>
-        <Link to="/blog" className="text-sm hover:text-[var(--color-primary)] transition-colors">
-          View all posts →
+        <h2 className="text-3xl font-bold">Recent Blog Post</h2>
+        <Link to="/blog" className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors">
+          View all →
         </Link>
       </div>
       
+      <div className="prose prose-lg max-w-none mb-6">
+        <p className="leading-relaxed">
+          Writing and research allow me to explore ideas in depth and share my discoveries with others. My blog is where I document 
+          my learning journey, share technical insights, and occasionally dive into philosophical questions about technology and its 
+          impact. Below is my most recent post – a window into what's currently capturing my attention.
+        </p>
+      </div>
+      
       {recentPost.type === 'pdf' ? (
-        // For PDF posts, use a div with onClick instead of Link
+        // For PDF posts
         <div
           onClick={() => window.open(`https://aidanandrews22.github.io/${recentPost.content}`, '_blank', 'noopener noreferrer')}
           className="block group cursor-pointer"
         >
-          <motion.article
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+            className="relative p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg transition-all overflow-hidden"
           >
-            <div className="flex justify-between items-start mb-2">
-              <div className="flex items-center gap-2">
-                <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
-                <span className="px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] to-transparent rounded-bl-full opacity-30"></div>
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] to-transparent rounded-tr-full opacity-30"></div>
+            
+            {/* Post content */}
+            <div className="relative">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex flex-col md:flex-row md:items-center gap-2">
+                  <h3 className="text-xl font-bold group-hover:text-[var(--color-primary)] transition-colors">
+                    {recentPost.title || 'Untitled Post'}
+                  </h3>
+                  
+                  <span className="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                   PDF
                 </span>
               </div>
+                
               {recentPost.date && (
-                <time className="text-sm" dateTime={recentPost.date}>
-                  {(() => {
-                    try {
-                      return new Date(recentPost.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      });
-                    } catch (err) {
-                      console.error('Error formatting date:', recentPost.date, err);
-                      return recentPost.date;
-                    }
-                  })()}
+                  <time dateTime={recentPost.date} className="text-sm px-2 py-1 rounded-md bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+                    {formatDate(recentPost.date)}
                 </time>
               )}
             </div>
             
-            <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
+              <p className="mb-4 text-base/relaxed">{recentPost.summary || 'No description available'}</p>
             
-            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex flex-wrap gap-2 mb-4">
               {getTags(recentPost).map((tag, tagIndex) => (
                 tag && typeof tag === 'string' ? (
                   <span
@@ -400,56 +802,59 @@ const RecentBlogSection = () => {
               ))}
             </div>
             
-            <span className="inline-flex items-center mt-4 text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
-              Open PDF in new tab
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </span>
-          </motion.article>
+              <span className="inline-flex items-center text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+                Open PDF in new tab
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
+          </motion.div>
         </div>
       ) : (
-        // For markdown posts, use Link as before
+        // For markdown posts
         <Link
           to={`/blog/${recentPost.id}`}
           className="block group"
         >
-          <motion.article
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors"
+            className="relative p-6 rounded-xl border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] hover:shadow-lg transition-all overflow-hidden"
           >
-            <div className="flex justify-between items-start mb-2">
-              <div className="flex items-center gap-2">
-                <h3 className="text-xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">{recentPost.title || 'Untitled Post'}</h3>
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] to-transparent rounded-bl-full opacity-30"></div>
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] to-transparent rounded-tr-full opacity-30"></div>
+            
+            {/* Post content */}
+            <div className="relative">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex flex-col md:flex-row md:items-center gap-2">
+                  <h3 className="text-xl font-bold group-hover:text-[var(--color-primary)] transition-colors">
+                    {recentPost.title || 'Untitled Post'}
+                  </h3>
+                  
                 {recentPost.type === 'md' && (
-                  <span className="px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+                    <span className="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
                     MD
                   </span>
                 )}
               </div>
+                
               {recentPost.date && (
-                <time className="text-sm" dateTime={recentPost.date}>
-                  {(() => {
-                    try {
-                      return new Date(recentPost.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      });
-                    } catch (err) {
-                      console.error('Error formatting date:', recentPost.date, err);
-                      return recentPost.date;
-                    }
-                  })()}
+                  <time dateTime={recentPost.date} className="text-sm px-2 py-1 rounded-md bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)]">
+                    {formatDate(recentPost.date)}
                 </time>
               )}
             </div>
             
-            <p className="mb-4 text-sm/relaxed">{recentPost.summary || 'No description available'}</p>
+              <p className="mb-4 text-base/relaxed">{recentPost.summary || 'No description available'}</p>
             
-            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex flex-wrap gap-2 mb-4">
               {getTags(recentPost).map((tag, tagIndex) => (
                 tag && typeof tag === 'string' ? (
                   <span
@@ -462,12 +867,23 @@ const RecentBlogSection = () => {
               ))}
             </div>
             
-            <span className="inline-block mt-4 text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
-              Read more →
+              <span className="inline-flex items-center text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity">
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
             </span>
-          </motion.article>
+            </div>
+          </motion.div>
         </Link>
       )}
+      
+      <div className="text-center pt-2">
+        <p className="text-sm opacity-80 italic">
+          I try to write regularly about my research findings, interesting technical challenges, and thoughts on technology's future.
+          My goal is to share knowledge that's both insightful and accessible.
+        </p>
+      </div>
     </section>
   );
 };
@@ -489,16 +905,34 @@ const InstagramFeed = () => {
   }, []); // Empty dependency array means this runs once on mount
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Instagram Feed</h2>
+        <h2 className="text-3xl font-bold">Instagram</h2>
+        <a 
+          href="https://www.instagram.com/aidanandrewss/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors inline-flex items-center gap-1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          @aidanandrewss
+        </a>
       </div>
       
-      <div className="border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] rounded-lg overflow-hidden">
+      <div className="prose prose-lg max-w-none mb-6">
+        <p className="leading-relaxed">
+          Beyond my academic and professional work, I share glimpses of my day-to-day life on Instagram. It's like a more exclusive internet portfolio.
+        </p>
+      </div>
+      
+      <div className="rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all hover:shadow-lg">
         <div className="flex flex-col md:flex-row">
           {/* Profile Info Section */}
           <div className="p-6 md:w-1/3 flex flex-col justify-center items-center md:border-r border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
+            <div className="relative">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
               <img 
                 src="/assets/About/ig_pfp.jpg" 
                 alt="Aidan Andrews" 
@@ -509,41 +943,66 @@ const InstagramFeed = () => {
               />
             </div>
             
+              {/* Decorative circles */}
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"></div>
+              <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"></div>
+            </div>
+            
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-semibold">Aidan Andrews</h3>
             <a 
               href="https://www.instagram.com/aidanandrewss/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-lg font-semibold hover:text-[var(--color-primary)] transition-colors"
+                className="text-sm text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline"
             >
               @aidanandrewss
             </a>
+            </div>
             
-            <div className="flex gap-4 mt-4 text-sm">
+            <div className="flex gap-6 mt-6 text-sm">
               <div className="text-center">
                 <div className="font-semibold">50+</div>
-                <div className="opacity-75">Posts</div>
+                <div className="opacity-75 text-xs">Posts</div>
               </div>
               <div className="text-center">
                 <div className="font-semibold">2,000+</div>
-                <div className="opacity-75">Followers</div>
+                <div className="opacity-75 text-xs">Followers</div>
+              </div>
+              <div className="text-center">
+                <div className="font-semibold">500+</div>
+                <div className="opacity-75 text-xs">Following</div>
               </div>
             </div>
+            
+            <p className="mt-6 text-sm text-center">
+              Student | Researcher | Athlete | Builder
+            </p>
             
             <a 
               href="https://www.instagram.com/aidanandrewss/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="mt-6 px-4 py-2 text-sm rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_25%,transparent)] transition-colors"
+              className="mt-6 px-4 py-2 text-sm rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_25%,transparent)] transition-colors inline-flex items-center gap-2"
             >
-              View Profile
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Follow
             </a>
           </div>
           
           {/* Behold Widget Section */}
-          <div className="md:w-2/3 p-4">
-            <div data-behold-id="4rd4S35EClbGiv4HjWHq" className="w-full h-full"></div>
+          <div className="md:w-2/3 p-4 relative">
+            <div data-behold-id="4rd4S35EClbGiv4HjWHq" className="w-full h-full min-h-[300px]"></div>
           </div>
         </div>
+      </div>
+      
+      <div className="text-center text-sm opacity-70 mt-4">
+        <p className="mt-2">
+          Feel free to reach out there if you'd like to connect or collaborate!
+        </p>
       </div>
     </section>
   );
@@ -555,6 +1014,9 @@ export default function About() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Add a class to the document to ensure dark mode is respected
+    document.documentElement.classList.add('color-scheme-adaptive');
+
     const fetchProjects = async () => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/projects.json');
@@ -573,6 +1035,11 @@ export default function About() {
     };
 
     fetchProjects();
+    
+    // Cleanup function
+    return () => {
+      document.documentElement.classList.remove('color-scheme-adaptive');
+    };
   }, []);
 
   return (
@@ -580,21 +1047,16 @@ export default function About() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-3xl mx-auto space-y-12 pb-12"
+      className="max-w-3xl mx-auto space-y-16 pb-12"
     >
       <AboutSection />
-      <DocumentsSection />
-      <EducationSection />
+      <WhatDrivesMe />
       <WorkExperienceSection />
+      <EducationSection />
       <ProjectsSection projects={currentProjects} loading={loading} error={error} />
       <RecentBlogSection />
       <InstagramFeed />
-      {/* <p className="text-lg leading-relaxed">
-        Here is a document that contains some of my ideas and daily notes.<br />
-        <a href="https://aidanandrews22.github.io/content/notes/Personal/main.pdf" target="_blank" rel="noopener noreferrer" className="text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline">
-          View Notes →
-        </a>
-      </p> */}
+      <TechnicalExpertiseSection />
     </motion.div>
   );
 } 

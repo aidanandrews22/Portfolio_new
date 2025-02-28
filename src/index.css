@@ -6,7 +6,13 @@
   --color-primary: oklch(0.55 0.18 250.0);    /* A balanced blue that works well in both light/dark modes */
   --color-secondary: oklch(0.45 0.15 250.0);  /* Slightly darker variant for hover states */
   --color-background-light: oklch(1 0 0);      /* Pure white */
-  --color-background-dark: oklch(0 0 0);       /* Pure black */
+  --color-background-dark: var(--gray-800);     /* Near black for better eye comfort */
+  --color-text-light: oklch(0.2 0 0);          /* Dark gray for light mode text */
+  --color-text-dark: oklch(0.95 0 0);          /* Off-white for dark mode text */
+  --color-surface-light: oklch(0.98 0 0);      /* Off-white for cards in light mode */
+  --color-surface-dark: oklch(0.15 0 0);       /* Dark gray for cards in dark mode */
+  --color-border-light: oklch(0.85 0 0);       /* Light gray for borders in light mode */
+  --color-border-dark: oklch(0.25 0 0);        /* Dark gray for borders in dark mode */
 
   /* Typography */
   --font-sans: ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", system-ui, sans-serif;
@@ -16,11 +22,91 @@
 
   /* Animation */
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
 }
 
 @layer base {
   :root {
     color-scheme: light dark;
+  }
+
+  html.color-scheme-adaptive {
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark;
+      --color-background: var(--color-background-dark);
+      --color-text: var(--color-text-dark);
+      --color-surface: var(--color-surface-dark);
+      --color-border: var(--color-border-dark);
+    }
+    
+    @media (prefers-color-scheme: light) {
+      color-scheme: light;
+      --color-background: var(--color-background-light);
+      --color-text: var(--color-text-light);
+      --color-surface: var(--color-surface-light);
+      --color-border: var(--color-border-light);
+    }
+
+    transition: var(--transition-theme);
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  
+  /* Force light theme regardless of system preference */
+  html.force-light {
+    color-scheme: light;
+    --color-background: var(--color-background-light);
+    --color-text: var(--color-text-light);
+    --color-surface: var(--color-surface-light);
+    --color-border: var(--color-border-light);
+    
+    transition: var(--transition-theme);
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  
+  /* Force dark theme regardless of system preference */
+  html.force-dark {
+    color-scheme: dark;
+    --color-background: var(--color-background-dark);
+    --color-text: var(--color-text-dark);
+    --color-surface: var(--color-surface-dark);
+    --color-border: var(--color-border-dark);
+    
+    transition: var(--transition-theme);
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  
+  /* Starting style for smooth theme transitions */
+  @starting-style {
+    html.color-scheme-adaptive, 
+    html.force-light, 
+    html.force-dark {
+      background-color: initial;
+      color: initial;
+    }
+  }
+  
+  ::selection {
+    background-color: color-mix(in oklch, var(--color-primary) 25%, transparent);
+  }
+
+  /* Improve image visibility in dark mode */
+  img {
+    @media (prefers-color-scheme: dark) {
+      filter: brightness(.8) contrast(1.2);
+    }
+  }
+  
+  /* Make sure dark mode images look good with forced themes too */
+  html.force-dark img {
+    filter: brightness(.8) contrast(1.2);
+  }
+
+  /* Ensure SVGs adapt to color scheme */
+  svg {
+    fill: currentColor;
   }
 }
 
@@ -31,6 +117,141 @@
     }
     @media (prefers-color-scheme: light) {
       background-color: var(--color-background-light);
+    }
+    
+    html.force-light & {
+      background-color: var(--color-background-light);
+    }
+    
+    html.force-dark & {
+      background-color: var(--color-background-dark);
+    }
+  }
+  
+  .bg-surface {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-surface-dark);
+    }
+    @media (prefers-color-scheme: light) {
+      background-color: var(--color-surface-light);
+    }
+    
+    html.force-light & {
+      background-color: var(--color-surface-light);
+    }
+    
+    html.force-dark & {
+      background-color: var(--color-surface-dark);
+    }
+  }
+  
+  .border-adaptive {
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--color-border-dark);
+    }
+    @media (prefers-color-scheme: light) {
+      border-color: var(--color-border-light);
+    }
+    
+    html.force-light & {
+      border-color: var(--color-border-light);
+    }
+    
+    html.force-dark & {
+      border-color: var(--color-border-dark);
+    }
+  }
+
+  .prose-adaptive {
+    @media (prefers-color-scheme: dark) {
+      --tw-prose-body: var(--color-text-dark);
+      --tw-prose-headings: var(--color-text-dark);
+      --tw-prose-lead: color-mix(in oklch, var(--color-text-dark) 90%, transparent);
+      --tw-prose-links: var(--color-primary);
+      --tw-prose-bold: var(--color-text-dark);
+      --tw-prose-counters: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-bullets: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-hr: var(--color-border-dark);
+      --tw-prose-quotes: color-mix(in oklch, var(--color-text-dark) 90%, transparent);
+      --tw-prose-quote-borders: color-mix(in oklch, var(--color-primary) 70%, transparent);
+      --tw-prose-captions: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-code: var(--color-text-dark);
+      --tw-prose-pre-code: var(--color-text-dark);
+      --tw-prose-pre-bg: var(--color-surface-dark);
+      --tw-prose-th-borders: var(--color-border-dark);
+      --tw-prose-td-borders: var(--color-border-dark);
+    }
+    
+    @media (prefers-color-scheme: light) {
+      --tw-prose-body: var(--color-text-light);
+      --tw-prose-headings: var(--color-text-light);
+      --tw-prose-lead: color-mix(in oklch, var(--color-text-light) 90%, transparent);
+      --tw-prose-links: var(--color-primary);
+      --tw-prose-bold: var(--color-text-light);
+      --tw-prose-counters: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-bullets: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-hr: var(--color-border-light);
+      --tw-prose-quotes: color-mix(in oklch, var(--color-text-light) 90%, transparent);
+      --tw-prose-quote-borders: color-mix(in oklch, var(--color-primary) 70%, transparent);
+      --tw-prose-captions: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-code: var(--color-text-light);
+      --tw-prose-pre-code: var(--color-text-light);
+      --tw-prose-pre-bg: var(--color-surface-light);
+      --tw-prose-th-borders: var(--color-border-light);
+      --tw-prose-td-borders: var(--color-border-light);
+    }
+    
+    html.force-light & {
+      --tw-prose-body: var(--color-text-light);
+      --tw-prose-headings: var(--color-text-light);
+      --tw-prose-lead: color-mix(in oklch, var(--color-text-light) 90%, transparent);
+      --tw-prose-links: var(--color-primary);
+      --tw-prose-bold: var(--color-text-light);
+      --tw-prose-counters: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-bullets: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-hr: var(--color-border-light);
+      --tw-prose-quotes: color-mix(in oklch, var(--color-text-light) 90%, transparent);
+      --tw-prose-quote-borders: color-mix(in oklch, var(--color-primary) 70%, transparent);
+      --tw-prose-captions: color-mix(in oklch, var(--color-text-light) 70%, transparent);
+      --tw-prose-code: var(--color-text-light);
+      --tw-prose-pre-code: var(--color-text-light);
+      --tw-prose-pre-bg: var(--color-surface-light);
+      --tw-prose-th-borders: var(--color-border-light);
+      --tw-prose-td-borders: var(--color-border-light);
+    }
+    
+    html.force-dark & {
+      --tw-prose-body: var(--color-text-dark);
+      --tw-prose-headings: var(--color-text-dark);
+      --tw-prose-lead: color-mix(in oklch, var(--color-text-dark) 90%, transparent);
+      --tw-prose-links: var(--color-primary);
+      --tw-prose-bold: var(--color-text-dark);
+      --tw-prose-counters: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-bullets: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-hr: var(--color-border-dark);
+      --tw-prose-quotes: color-mix(in oklch, var(--color-text-dark) 90%, transparent);
+      --tw-prose-quote-borders: color-mix(in oklch, var(--color-primary) 70%, transparent);
+      --tw-prose-captions: color-mix(in oklch, var(--color-text-dark) 70%, transparent);
+      --tw-prose-code: var(--color-text-dark);
+      --tw-prose-pre-code: var(--color-text-dark);
+      --tw-prose-pre-bg: var(--color-surface-dark);
+      --tw-prose-th-borders: var(--color-border-dark);
+      --tw-prose-td-borders: var(--color-border-dark);
+    }
+  }
+  
+  /* Dark mode support for form elements */
+  .form-input-adaptive {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-surface-dark);
+      color: var(--color-text-dark);
+      border-color: var(--color-border-dark);
+    }
+    
+    html.force-dark & {
+      background-color: var(--color-surface-dark);
+      color: var(--color-text-dark);
+      border-color: var(--color-border-dark);
     }
   }
 }
