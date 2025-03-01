@@ -1,0 +1,2234 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource5E669DBBOutputsamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerTableManageFDD8AD98": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUseServerSideEncryption": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnableServerSideEncryption"
+    },
+    "true"
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "BlogPostLikeTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource5E669DBBOutputsamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerTableManageFDD8AD98"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "BlogPostLike-",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": {
+      "Fn::If": [
+       "ShouldUseServerSideEncryption",
+       true,
+       false
+      ]
+     }
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/BlogPostLikeTable/Default/Default"
+   }
+  },
+  "BlogPostLikeIAMRole1250A74D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "BlogPostLike-",
+                {
+                 "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "BlogPostLike-",
+                {
+                 "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "BlogPostLikeIAMRole3f74e1-",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/BlogPostLikeIAMRole/Resource"
+   }
+  },
+  "BlogPostLikeDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "BlogPostLikeTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "BlogPostLikeTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "BlogPostLikeIAMRole1250A74D",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "BlogPostLikeIAMRole1250A74D"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/BlogPostLikeDataSource/Resource"
+   }
+  },
+  "QuerygetBlogPostLikepreAuth0FunctionQuerygetBlogPostLikepreAuth0FunctionAppSyncFunction755E8B16": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetBlogPostLikepreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ffc597e18023b530e6afcbe02cee647d49550fa9e77bd06f1dee09d8b1be8de3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerygetBlogPostLikepreAuth0Function/QuerygetBlogPostLikepreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetBlogPostLikeauth0FunctionQuerygetBlogPostLikeauth0FunctionAppSyncFunction25DCAEE1": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1a6ef218fd9d220b4e8ac860e18d217c1e00d7619b619634da4856302619fa0a.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerygetBlogPostLikeauth0Function/QuerygetBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetBlogPostLikepostAuth0FunctionQuerygetBlogPostLikepostAuth0FunctionAppSyncFunction5D6FE83F": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerygetBlogPostLikepostAuth0Function/QuerygetBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetBlogPostLikeDataResolverFnQueryGetBlogPostLikeDataResolverFnAppSyncFunction3B6589E8": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QueryGetBlogPostLikeDataResolverFn/QueryGetBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "getBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetBlogPostLikepreAuth0FunctionQuerygetBlogPostLikepreAuth0FunctionAppSyncFunction755E8B16",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetBlogPostLikeauth0FunctionQuerygetBlogPostLikeauth0FunctionAppSyncFunction25DCAEE1",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetBlogPostLikepostAuth0FunctionQuerygetBlogPostLikepostAuth0FunctionAppSyncFunction5D6FE83F",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetBlogPostLikeDataResolverFnQueryGetBlogPostLikeDataResolverFnAppSyncFunction3B6589E8",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "BlogPostLikeTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/queryGetBlogPostLikeResolver"
+   }
+  },
+  "QuerylistBlogPostLikespreAuth0FunctionQuerylistBlogPostLikespreAuth0FunctionAppSyncFunctionBB8F1412": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistBlogPostLikespreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3e81312d4c75951808eda9fcd5f854c1925c0b819de0939f09c4fe2eebb190b8.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerylistBlogPostLikespreAuth0Function/QuerylistBlogPostLikespreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistBlogPostLikesauth0FunctionQuerylistBlogPostLikesauth0FunctionAppSyncFunction67D4E170": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistBlogPostLikesauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1a6ef218fd9d220b4e8ac860e18d217c1e00d7619b619634da4856302619fa0a.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerylistBlogPostLikesauth0Function/QuerylistBlogPostLikesauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistBlogPostLikespostAuth0FunctionQuerylistBlogPostLikespostAuth0FunctionAppSyncFunction3F3A850E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistBlogPostLikespostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QuerylistBlogPostLikespostAuth0Function/QuerylistBlogPostLikespostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListBlogPostLikesDataResolverFnQueryListBlogPostLikesDataResolverFnAppSyncFunction57EB52B8": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListBlogPostLikesDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/QueryListBlogPostLikesDataResolverFn/QueryListBlogPostLikesDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "listBlogPostLikes",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistBlogPostLikespreAuth0FunctionQuerylistBlogPostLikespreAuth0FunctionAppSyncFunctionBB8F1412",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistBlogPostLikesauth0FunctionQuerylistBlogPostLikesauth0FunctionAppSyncFunction67D4E170",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistBlogPostLikespostAuth0FunctionQuerylistBlogPostLikespostAuth0FunctionAppSyncFunction3F3A850E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListBlogPostLikesDataResolverFnQueryListBlogPostLikesDataResolverFnAppSyncFunction57EB52B8",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listBlogPostLikes\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "BlogPostLikeTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/queryListBlogPostLikesResolver"
+   }
+  },
+  "MutationcreateBlogPostLikeinit0FunctionMutationcreateBlogPostLikeinit0FunctionAppSyncFunction989039AF": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateBlogPostLikeinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationcreateBlogPostLikeinit0Function/MutationcreateBlogPostLikeinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateBlogPostLikepreAuth0FunctionMutationcreateBlogPostLikepreAuth0FunctionAppSyncFunction5A7EF1A4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateBlogPostLikepreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39fb35c6f8e8573ffe3a63ba867cf543b05af129a104b387a44f03c3d85da0c3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationcreateBlogPostLikepreAuth0Function/MutationcreateBlogPostLikepreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateBlogPostLikeauth0FunctionMutationcreateBlogPostLikeauth0FunctionAppSyncFunctionE574794E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d637c1fb7301003b8a5ada269338cf2e8df6cc0dc412ef13acc6158d680b6d3e.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationcreateBlogPostLikeauth0Function/MutationcreateBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateBlogPostLikepostAuth0FunctionMutationcreateBlogPostLikepostAuth0FunctionAppSyncFunctionC85A9652": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationcreateBlogPostLikepostAuth0Function/MutationcreateBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateBlogPostLikeDataResolverFnMutationCreateBlogPostLikeDataResolverFnAppSyncFunction9A8B9F86": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2b484a1524d15c427ee794db7754a098f2d0c3f91969363e6faa8720ddc61fe9.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationCreateBlogPostLikeDataResolverFn/MutationCreateBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "createBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateBlogPostLikeinit0FunctionMutationcreateBlogPostLikeinit0FunctionAppSyncFunction989039AF",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateBlogPostLikepreAuth0FunctionMutationcreateBlogPostLikepreAuth0FunctionAppSyncFunction5A7EF1A4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateBlogPostLikeauth0FunctionMutationcreateBlogPostLikeauth0FunctionAppSyncFunctionE574794E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateBlogPostLikepostAuth0FunctionMutationcreateBlogPostLikepostAuth0FunctionAppSyncFunctionC85A9652",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateBlogPostLikeDataResolverFnMutationCreateBlogPostLikeDataResolverFnAppSyncFunction9A8B9F86",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "BlogPostLikeTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/mutationCreateBlogPostLikeResolver"
+   }
+  },
+  "MutationupdateBlogPostLikeinit0FunctionMutationupdateBlogPostLikeinit0FunctionAppSyncFunctionCBE80203": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateBlogPostLikeinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationupdateBlogPostLikeinit0Function/MutationupdateBlogPostLikeinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateBlogPostLikepreAuth0FunctionMutationupdateBlogPostLikepreAuth0FunctionAppSyncFunctionC84E98BC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateBlogPostLikepreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39fb35c6f8e8573ffe3a63ba867cf543b05af129a104b387a44f03c3d85da0c3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationupdateBlogPostLikepreAuth0Function/MutationupdateBlogPostLikepreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateBlogPostLikeauth0FunctionMutationupdateBlogPostLikeauth0FunctionAppSyncFunctionD7FDC9D4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/89f92efd98b1034df0e2497fe31a97de6975de554b8a22e0677d05d6efcafa59.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationupdateBlogPostLikeauth0Function/MutationupdateBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateBlogPostLikepostAuth0FunctionMutationupdateBlogPostLikepostAuth0FunctionAppSyncFunctionD3AFD116": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationupdateBlogPostLikepostAuth0Function/MutationupdateBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateBlogPostLikeDataResolverFnMutationUpdateBlogPostLikeDataResolverFnAppSyncFunctionA64D13CF": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationUpdateBlogPostLikeDataResolverFn/MutationUpdateBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "updateBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateBlogPostLikeinit0FunctionMutationupdateBlogPostLikeinit0FunctionAppSyncFunctionCBE80203",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateBlogPostLikepreAuth0FunctionMutationupdateBlogPostLikepreAuth0FunctionAppSyncFunctionC84E98BC",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateBlogPostLikeauth0FunctionMutationupdateBlogPostLikeauth0FunctionAppSyncFunctionD7FDC9D4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateBlogPostLikepostAuth0FunctionMutationupdateBlogPostLikepostAuth0FunctionAppSyncFunctionD3AFD116",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateBlogPostLikeDataResolverFnMutationUpdateBlogPostLikeDataResolverFnAppSyncFunctionA64D13CF",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "BlogPostLikeTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/mutationUpdateBlogPostLikeResolver"
+   }
+  },
+  "MutationdeleteBlogPostLikepreAuth0FunctionMutationdeleteBlogPostLikepreAuth0FunctionAppSyncFunction5E10D8CD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteBlogPostLikepreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a2c0f8a4d76f659d130c8a445801845ae9d33e5cc2c5ecd610edc272d4bd46e3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationdeleteBlogPostLikepreAuth0Function/MutationdeleteBlogPostLikepreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteBlogPostLikeauth0FunctionMutationdeleteBlogPostLikeauth0FunctionAppSyncFunction98E08652": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e3416b4d47414f29c21e59a70e83bddb959ef0625854ed7fb0ca376573e99069.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationdeleteBlogPostLikeauth0Function/MutationdeleteBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteBlogPostLikepostAuth0FunctionMutationdeleteBlogPostLikepostAuth0FunctionAppSyncFunction01C88283": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationdeleteBlogPostLikepostAuth0Function/MutationdeleteBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteBlogPostLikeDataResolverFnMutationDeleteBlogPostLikeDataResolverFnAppSyncFunctionF1F8879B": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "BlogPostLikeDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "BlogPostLikeDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/MutationDeleteBlogPostLikeDataResolverFn/MutationDeleteBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "deleteBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteBlogPostLikepreAuth0FunctionMutationdeleteBlogPostLikepreAuth0FunctionAppSyncFunction5E10D8CD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteBlogPostLikeauth0FunctionMutationdeleteBlogPostLikeauth0FunctionAppSyncFunction98E08652",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteBlogPostLikepostAuth0FunctionMutationdeleteBlogPostLikepostAuth0FunctionAppSyncFunction01C88283",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteBlogPostLikeDataResolverFnMutationDeleteBlogPostLikeDataResolverFnAppSyncFunctionF1F8879B",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "BlogPostLikeTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/mutationDeleteBlogPostLikeResolver"
+   }
+  },
+  "SubscriptiononCreateBlogPostLikeauth0FunctionSubscriptiononCreateBlogPostLikeauth0FunctionAppSyncFunction63C4A5B0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononCreateBlogPostLikeauth0Function/SubscriptiononCreateBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateBlogPostLikepostAuth0FunctionSubscriptiononCreateBlogPostLikepostAuth0FunctionAppSyncFunctionC1D76FE2": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononCreateBlogPostLikepostAuth0Function/SubscriptiononCreateBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateBlogPostLikeDataResolverFnSubscriptionOnCreateBlogPostLikeDataResolverFnAppSyncFunctionC3807D1A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptionOnCreateBlogPostLikeDataResolverFn/SubscriptionOnCreateBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onCreateBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateBlogPostLikeauth0FunctionSubscriptiononCreateBlogPostLikeauth0FunctionAppSyncFunction63C4A5B0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateBlogPostLikepostAuth0FunctionSubscriptiononCreateBlogPostLikepostAuth0FunctionAppSyncFunctionC1D76FE2",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateBlogPostLikeDataResolverFnSubscriptionOnCreateBlogPostLikeDataResolverFnAppSyncFunctionC3807D1A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/subscriptionOnCreateBlogPostLikeResolver"
+   }
+  },
+  "SubscriptiononUpdateBlogPostLikeauth0FunctionSubscriptiononUpdateBlogPostLikeauth0FunctionAppSyncFunctionA46FB34E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononUpdateBlogPostLikeauth0Function/SubscriptiononUpdateBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateBlogPostLikepostAuth0FunctionSubscriptiononUpdateBlogPostLikepostAuth0FunctionAppSyncFunctionE50B9610": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononUpdateBlogPostLikepostAuth0Function/SubscriptiononUpdateBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateBlogPostLikeDataResolverFnSubscriptionOnUpdateBlogPostLikeDataResolverFnAppSyncFunction6049E866": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptionOnUpdateBlogPostLikeDataResolverFn/SubscriptionOnUpdateBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onUpdateBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateBlogPostLikeauth0FunctionSubscriptiononUpdateBlogPostLikeauth0FunctionAppSyncFunctionA46FB34E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateBlogPostLikepostAuth0FunctionSubscriptiononUpdateBlogPostLikepostAuth0FunctionAppSyncFunctionE50B9610",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateBlogPostLikeDataResolverFnSubscriptionOnUpdateBlogPostLikeDataResolverFnAppSyncFunction6049E866",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/subscriptionOnUpdateBlogPostLikeResolver"
+   }
+  },
+  "SubscriptiononDeleteBlogPostLikeauth0FunctionSubscriptiononDeleteBlogPostLikeauth0FunctionAppSyncFunction0ECD9908": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteBlogPostLikeauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononDeleteBlogPostLikeauth0Function/SubscriptiononDeleteBlogPostLikeauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteBlogPostLikepostAuth0FunctionSubscriptiononDeleteBlogPostLikepostAuth0FunctionAppSyncFunctionA49537FE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteBlogPostLikepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptiononDeleteBlogPostLikepostAuth0Function/SubscriptiononDeleteBlogPostLikepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteBlogPostLikeDataResolverFnSubscriptionOnDeleteBlogPostLikeDataResolverFnAppSyncFunction64161759": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteBlogPostLikeDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/SubscriptionOnDeleteBlogPostLikeDataResolverFn/SubscriptionOnDeleteBlogPostLikeDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteBlogPostLikeResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onDeleteBlogPostLike",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteBlogPostLikeauth0FunctionSubscriptiononDeleteBlogPostLikeauth0FunctionAppSyncFunction0ECD9908",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteBlogPostLikepostAuth0FunctionSubscriptiononDeleteBlogPostLikepostAuth0FunctionAppSyncFunctionA49537FE",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteBlogPostLikeDataResolverFnSubscriptionOnDeleteBlogPostLikeDataResolverFnAppSyncFunction64161759",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteBlogPostLike\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/subscriptionOnDeleteBlogPostLikeResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOwW6DMAyGn6X34I320usK2nGbYPfKJAalgINip1WFePcJOnXa6fcnf7L/PeTHHPId3iSzrs8G38D8QaLkakXbm6LlL4w4klJcoQjsvPrApiIJKVoyRRIN4x+2/JzxJufZ3RnH4Br4xmagEwoZjyPMVRgedhhoMThNcmcLc7npZVOiYv08+Z/eE9u1RBG49V2KuDX6/TxcKS5GDmcUIRV4W8PIAU7J9qRrgWV1P5NOSc22rhU7z91iODiCi7xc96+QHyHfXcT7LCZWPxJUj/wBvcL9RzYBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/BlogPostLike/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttBlogPostLikeTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "BlogPostLikeTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "GetAtt:BlogPostLikeTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttBlogPostLikeTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "BlogPostLike-",
+      {
+       "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "GetAtt:BlogPostLikeTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

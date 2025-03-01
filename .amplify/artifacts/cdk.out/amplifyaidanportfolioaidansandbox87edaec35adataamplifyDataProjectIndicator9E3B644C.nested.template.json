@@ -1,0 +1,2234 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource5E669DBBOutputsamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerTableManageFDD8AD98": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef": {
+   "Type": "String"
+  },
+  "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUseServerSideEncryption": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnableServerSideEncryption"
+    },
+    "true"
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "ProjectIndicatorTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource5E669DBBOutputsamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataAmplifyTableManagerTableManageFDD8AD98"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "ProjectIndicator-",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": {
+      "Fn::If": [
+       "ShouldUseServerSideEncryption",
+       true,
+       false
+      ]
+     }
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/ProjectIndicatorTable/Default/Default"
+   }
+  },
+  "ProjectIndicatorIAMRole4B3CD36B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "ProjectIndicator-",
+                {
+                 "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "ProjectIndicator-",
+                {
+                 "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "ProjectIndicatorIAMRaae24e-",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/ProjectIndicatorIAMRole/Resource"
+   }
+  },
+  "ProjectIndicatorDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "ProjectIndicatorTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "ProjectIndicatorTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorIAMRole4B3CD36B",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "ProjectIndicatorIAMRole4B3CD36B"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/ProjectIndicatorDataSource/Resource"
+   }
+  },
+  "QuerygetProjectIndicatorpreAuth0FunctionQuerygetProjectIndicatorpreAuth0FunctionAppSyncFunction24CA92C0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetProjectIndicatorpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ffc597e18023b530e6afcbe02cee647d49550fa9e77bd06f1dee09d8b1be8de3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerygetProjectIndicatorpreAuth0Function/QuerygetProjectIndicatorpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetProjectIndicatorauth0FunctionQuerygetProjectIndicatorauth0FunctionAppSyncFunction36E99CAF": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1a6ef218fd9d220b4e8ac860e18d217c1e00d7619b619634da4856302619fa0a.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerygetProjectIndicatorauth0Function/QuerygetProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetProjectIndicatorpostAuth0FunctionQuerygetProjectIndicatorpostAuth0FunctionAppSyncFunction57F7E3A0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerygetProjectIndicatorpostAuth0Function/QuerygetProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetProjectIndicatorDataResolverFnQueryGetProjectIndicatorDataResolverFnAppSyncFunction5A675E9D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QueryGetProjectIndicatorDataResolverFn/QueryGetProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "getProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetProjectIndicatorpreAuth0FunctionQuerygetProjectIndicatorpreAuth0FunctionAppSyncFunction24CA92C0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetProjectIndicatorauth0FunctionQuerygetProjectIndicatorauth0FunctionAppSyncFunction36E99CAF",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetProjectIndicatorpostAuth0FunctionQuerygetProjectIndicatorpostAuth0FunctionAppSyncFunction57F7E3A0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetProjectIndicatorDataResolverFnQueryGetProjectIndicatorDataResolverFnAppSyncFunction5A675E9D",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ProjectIndicatorTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/queryGetProjectIndicatorResolver"
+   }
+  },
+  "QuerylistProjectIndicatorspreAuth0FunctionQuerylistProjectIndicatorspreAuth0FunctionAppSyncFunction3102BE54": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistProjectIndicatorspreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3e81312d4c75951808eda9fcd5f854c1925c0b819de0939f09c4fe2eebb190b8.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerylistProjectIndicatorspreAuth0Function/QuerylistProjectIndicatorspreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistProjectIndicatorsauth0FunctionQuerylistProjectIndicatorsauth0FunctionAppSyncFunction298D18F3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistProjectIndicatorsauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1a6ef218fd9d220b4e8ac860e18d217c1e00d7619b619634da4856302619fa0a.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerylistProjectIndicatorsauth0Function/QuerylistProjectIndicatorsauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistProjectIndicatorspostAuth0FunctionQuerylistProjectIndicatorspostAuth0FunctionAppSyncFunction5D649BCE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistProjectIndicatorspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QuerylistProjectIndicatorspostAuth0Function/QuerylistProjectIndicatorspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListProjectIndicatorsDataResolverFnQueryListProjectIndicatorsDataResolverFnAppSyncFunction6D80A338": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListProjectIndicatorsDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/QueryListProjectIndicatorsDataResolverFn/QueryListProjectIndicatorsDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "listProjectIndicators",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistProjectIndicatorspreAuth0FunctionQuerylistProjectIndicatorspreAuth0FunctionAppSyncFunction3102BE54",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistProjectIndicatorsauth0FunctionQuerylistProjectIndicatorsauth0FunctionAppSyncFunction298D18F3",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistProjectIndicatorspostAuth0FunctionQuerylistProjectIndicatorspostAuth0FunctionAppSyncFunction5D649BCE",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListProjectIndicatorsDataResolverFnQueryListProjectIndicatorsDataResolverFnAppSyncFunction6D80A338",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listProjectIndicators\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ProjectIndicatorTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/queryListProjectIndicatorsResolver"
+   }
+  },
+  "MutationcreateProjectIndicatorinit0FunctionMutationcreateProjectIndicatorinit0FunctionAppSyncFunctionC1741E82": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateProjectIndicatorinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationcreateProjectIndicatorinit0Function/MutationcreateProjectIndicatorinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateProjectIndicatorpreAuth0FunctionMutationcreateProjectIndicatorpreAuth0FunctionAppSyncFunctionAA681C87": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateProjectIndicatorpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39fb35c6f8e8573ffe3a63ba867cf543b05af129a104b387a44f03c3d85da0c3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationcreateProjectIndicatorpreAuth0Function/MutationcreateProjectIndicatorpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateProjectIndicatorauth0FunctionMutationcreateProjectIndicatorauth0FunctionAppSyncFunction0FFB6186": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d637c1fb7301003b8a5ada269338cf2e8df6cc0dc412ef13acc6158d680b6d3e.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationcreateProjectIndicatorauth0Function/MutationcreateProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateProjectIndicatorpostAuth0FunctionMutationcreateProjectIndicatorpostAuth0FunctionAppSyncFunction2311D1B0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationcreateProjectIndicatorpostAuth0Function/MutationcreateProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateProjectIndicatorDataResolverFnMutationCreateProjectIndicatorDataResolverFnAppSyncFunction544911CD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1ca5bc207ccbff19f2c744a6057a53ec00e0aacabbd10f731ad748b310595663.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationCreateProjectIndicatorDataResolverFn/MutationCreateProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "createProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateProjectIndicatorinit0FunctionMutationcreateProjectIndicatorinit0FunctionAppSyncFunctionC1741E82",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateProjectIndicatorpreAuth0FunctionMutationcreateProjectIndicatorpreAuth0FunctionAppSyncFunctionAA681C87",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateProjectIndicatorauth0FunctionMutationcreateProjectIndicatorauth0FunctionAppSyncFunction0FFB6186",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateProjectIndicatorpostAuth0FunctionMutationcreateProjectIndicatorpostAuth0FunctionAppSyncFunction2311D1B0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateProjectIndicatorDataResolverFnMutationCreateProjectIndicatorDataResolverFnAppSyncFunction544911CD",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ProjectIndicatorTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/mutationCreateProjectIndicatorResolver"
+   }
+  },
+  "MutationupdateProjectIndicatorinit0FunctionMutationupdateProjectIndicatorinit0FunctionAppSyncFunction9844D4A9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateProjectIndicatorinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationupdateProjectIndicatorinit0Function/MutationupdateProjectIndicatorinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateProjectIndicatorpreAuth0FunctionMutationupdateProjectIndicatorpreAuth0FunctionAppSyncFunction49FB307C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateProjectIndicatorpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39fb35c6f8e8573ffe3a63ba867cf543b05af129a104b387a44f03c3d85da0c3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationupdateProjectIndicatorpreAuth0Function/MutationupdateProjectIndicatorpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateProjectIndicatorauth0FunctionMutationupdateProjectIndicatorauth0FunctionAppSyncFunctionE07E7EAD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/89f92efd98b1034df0e2497fe31a97de6975de554b8a22e0677d05d6efcafa59.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationupdateProjectIndicatorauth0Function/MutationupdateProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateProjectIndicatorpostAuth0FunctionMutationupdateProjectIndicatorpostAuth0FunctionAppSyncFunctionFDC8C417": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationupdateProjectIndicatorpostAuth0Function/MutationupdateProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateProjectIndicatorDataResolverFnMutationUpdateProjectIndicatorDataResolverFnAppSyncFunctionB43DA73A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationUpdateProjectIndicatorDataResolverFn/MutationUpdateProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "updateProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateProjectIndicatorinit0FunctionMutationupdateProjectIndicatorinit0FunctionAppSyncFunction9844D4A9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateProjectIndicatorpreAuth0FunctionMutationupdateProjectIndicatorpreAuth0FunctionAppSyncFunction49FB307C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateProjectIndicatorauth0FunctionMutationupdateProjectIndicatorauth0FunctionAppSyncFunctionE07E7EAD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateProjectIndicatorpostAuth0FunctionMutationupdateProjectIndicatorpostAuth0FunctionAppSyncFunctionFDC8C417",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateProjectIndicatorDataResolverFnMutationUpdateProjectIndicatorDataResolverFnAppSyncFunctionB43DA73A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ProjectIndicatorTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/mutationUpdateProjectIndicatorResolver"
+   }
+  },
+  "MutationdeleteProjectIndicatorpreAuth0FunctionMutationdeleteProjectIndicatorpreAuth0FunctionAppSyncFunctionF3BEBABB": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteProjectIndicatorpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a2c0f8a4d76f659d130c8a445801845ae9d33e5cc2c5ecd610edc272d4bd46e3.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationdeleteProjectIndicatorpreAuth0Function/MutationdeleteProjectIndicatorpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteProjectIndicatorauth0FunctionMutationdeleteProjectIndicatorauth0FunctionAppSyncFunction71584898": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e3416b4d47414f29c21e59a70e83bddb959ef0625854ed7fb0ca376573e99069.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationdeleteProjectIndicatorauth0Function/MutationdeleteProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteProjectIndicatorpostAuth0FunctionMutationdeleteProjectIndicatorpostAuth0FunctionAppSyncFunction3781D864": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationdeleteProjectIndicatorpostAuth0Function/MutationdeleteProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteProjectIndicatorDataResolverFnMutationDeleteProjectIndicatorDataResolverFnAppSyncFunctionD3EE0FBE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ProjectIndicatorDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "ProjectIndicatorDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/MutationDeleteProjectIndicatorDataResolverFn/MutationDeleteProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "deleteProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteProjectIndicatorpreAuth0FunctionMutationdeleteProjectIndicatorpreAuth0FunctionAppSyncFunctionF3BEBABB",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteProjectIndicatorauth0FunctionMutationdeleteProjectIndicatorauth0FunctionAppSyncFunction71584898",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteProjectIndicatorpostAuth0FunctionMutationdeleteProjectIndicatorpostAuth0FunctionAppSyncFunction3781D864",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteProjectIndicatorDataResolverFnMutationDeleteProjectIndicatorDataResolverFnAppSyncFunctionD3EE0FBE",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ProjectIndicatorTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/mutationDeleteProjectIndicatorResolver"
+   }
+  },
+  "SubscriptiononCreateProjectIndicatorauth0FunctionSubscriptiononCreateProjectIndicatorauth0FunctionAppSyncFunctionC399207D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononCreateProjectIndicatorauth0Function/SubscriptiononCreateProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateProjectIndicatorpostAuth0FunctionSubscriptiononCreateProjectIndicatorpostAuth0FunctionAppSyncFunctionFA6B229E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononCreateProjectIndicatorpostAuth0Function/SubscriptiononCreateProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateProjectIndicatorDataResolverFnSubscriptionOnCreateProjectIndicatorDataResolverFnAppSyncFunction58ADBBF7": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptionOnCreateProjectIndicatorDataResolverFn/SubscriptionOnCreateProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onCreateProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateProjectIndicatorauth0FunctionSubscriptiononCreateProjectIndicatorauth0FunctionAppSyncFunctionC399207D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateProjectIndicatorpostAuth0FunctionSubscriptiononCreateProjectIndicatorpostAuth0FunctionAppSyncFunctionFA6B229E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateProjectIndicatorDataResolverFnSubscriptionOnCreateProjectIndicatorDataResolverFnAppSyncFunction58ADBBF7",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/subscriptionOnCreateProjectIndicatorResolver"
+   }
+  },
+  "SubscriptiononUpdateProjectIndicatorauth0FunctionSubscriptiononUpdateProjectIndicatorauth0FunctionAppSyncFunction34E5809A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononUpdateProjectIndicatorauth0Function/SubscriptiononUpdateProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateProjectIndicatorpostAuth0FunctionSubscriptiononUpdateProjectIndicatorpostAuth0FunctionAppSyncFunction5141AAFE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononUpdateProjectIndicatorpostAuth0Function/SubscriptiononUpdateProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateProjectIndicatorDataResolverFnSubscriptionOnUpdateProjectIndicatorDataResolverFnAppSyncFunction2E8B83F3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptionOnUpdateProjectIndicatorDataResolverFn/SubscriptionOnUpdateProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onUpdateProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateProjectIndicatorauth0FunctionSubscriptiononUpdateProjectIndicatorauth0FunctionAppSyncFunction34E5809A",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateProjectIndicatorpostAuth0FunctionSubscriptiononUpdateProjectIndicatorpostAuth0FunctionAppSyncFunction5141AAFE",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateProjectIndicatorDataResolverFnSubscriptionOnUpdateProjectIndicatorDataResolverFnAppSyncFunction2E8B83F3",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/subscriptionOnUpdateProjectIndicatorResolver"
+   }
+  },
+  "SubscriptiononDeleteProjectIndicatorauth0FunctionSubscriptiononDeleteProjectIndicatorauth0FunctionAppSyncFunction85FF08D3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteProjectIndicatorauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/415deaa9f662e749b9891c58b5779025e670057fd364b6783fe4d98838aedf80.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononDeleteProjectIndicatorauth0Function/SubscriptiononDeleteProjectIndicatorauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteProjectIndicatorpostAuth0FunctionSubscriptiononDeleteProjectIndicatorpostAuth0FunctionAppSyncFunction56B0AC4F": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteProjectIndicatorpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptiononDeleteProjectIndicatorpostAuth0Function/SubscriptiononDeleteProjectIndicatorpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteProjectIndicatorDataResolverFnSubscriptionOnDeleteProjectIndicatorDataResolverFnAppSyncFunction5D79A515": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPINONEDS3A583319Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteProjectIndicatorDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/SubscriptionOnDeleteProjectIndicatorDataResolverFn/SubscriptionOnDeleteProjectIndicatorDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteProjectIndicatorResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+    },
+    "FieldName": "onDeleteProjectIndicator",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteProjectIndicatorauth0FunctionSubscriptiononDeleteProjectIndicatorauth0FunctionAppSyncFunction85FF08D3",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteProjectIndicatorpostAuth0FunctionSubscriptiononDeleteProjectIndicatorpostAuth0FunctionAppSyncFunction56B0AC4F",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteProjectIndicatorDataResolverFnSubscriptionOnDeleteProjectIndicatorDataResolverFnAppSyncFunction5D79A515",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteProjectIndicator\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthauthenticatedUserRoleE3441C1BRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthunauthenticatedUserRole5155071ARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35aauthNestedStackauthNestedStackResource52B62F7AOutputsamplifyaidanportfolioaidansandbox87edaec35aauthamplifyAuthIdentityPoolEA208958Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/subscriptionOnDeleteProjectIndicatorResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOwW6DMAyGn6X34I320usK2nGbYPfKJAalgINip1WFePcJOnXa6fcnf7L/PeTHHPId3iSzrs8G38D8QaLkakXbm6LlL4w4klJcoQjsvPrApiIJKVoyRRIN4x+2/JzxJufZ3RnH4Br4xmagEwoZjyPMVRgedhhoMThNcmcLc7npZVOiYv08+Z/eE9u1RBG49V2KuDX6/TxcKS5GDmcUIRV4W8PIAU7J9qRrgWV1P5NOSc22rhU7z91iODiCi7xc96+QHyHfXcT7LCZWPxJUj/wBvcL9RzYBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-aidanportfolio-aidan-sandbox-87edaec35a/data/amplifyData/ProjectIndicator/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttProjectIndicatorTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "ProjectIndicatorTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "GetAtt:ProjectIndicatorTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttProjectIndicatorTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "ProjectIndicator-",
+      {
+       "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyaidanportfolioaidansandbox87edaec35adataamplifyDataGraphQLAPI2A5B93CEApiId"
+       },
+       "GetAtt:ProjectIndicatorTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

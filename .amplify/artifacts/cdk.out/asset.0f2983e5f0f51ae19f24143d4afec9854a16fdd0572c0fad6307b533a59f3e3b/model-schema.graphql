@@ -1,0 +1,22 @@
+type Todo @model @auth(rules: [{allow: public, provider: iam}])
+{
+  content: String
+}
+
+type BlogPostLike @model @auth(rules: [{allow: public, provider: iam, operations: [read]},
+  {allow: public, provider: apiKey, operations: [create, read, update, delete]}])
+{
+  id: String! @primaryKey
+  count: Int!
+  updatedAt: AWSDateTime
+}
+
+type ProjectIndicator @model @auth(rules: [{allow: public, provider: iam, operations: [read]},
+  {allow: public, provider: apiKey, operations: [create, read, update, delete]}])
+{
+  id: String! @primaryKey
+  count: Int!
+  indicatorType: String!
+  projectId: String!
+  updatedAt: AWSDateTime
+}
