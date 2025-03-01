@@ -1,9 +1,9 @@
-import { type ComponentPropsWithoutRef, useState } from 'react';
+import { type ComponentPropsWithoutRef, useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { oneLight, oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface MarkdownRendererProps {
   content: string;
@@ -12,6 +12,38 @@ interface MarkdownRendererProps {
 
 function CodeBlock({ children, language }: { children: string; language: string }) {
   const [copied, setCopied] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check initial color scheme
+    const checkColorScheme = () => {
+      const isDark = 
+        document.documentElement.classList.contains('force-dark') || 
+        (document.documentElement.classList.contains('color-scheme-adaptive') && 
+         window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIsDarkMode(isDark);
+    };
+
+    // Check on mount
+    checkColorScheme();
+
+    // Set up listeners for theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => checkColorScheme();
+    mediaQuery.addEventListener('change', handleChange);
+
+    // Observer for class changes on html element
+    const observer = new MutationObserver(checkColorScheme);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      observer.disconnect();
+    };
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(children).then(() => {
@@ -32,7 +64,7 @@ function CodeBlock({ children, language }: { children: string; language: string 
         {copied ? 'Copied!' : 'Copy'}
       </button>
       <SyntaxHighlighter
-        style={oneLight}
+        style={isDarkMode ? oneDark : oneLight}
         language={language}
         PreTag="div"
         className="!rounded-lg !m-0"
@@ -77,7 +109,7 @@ function extractYoutubeVideoId(url: string): string | null {
 
 export default function MarkdownRenderer({ content, className = '' }: MarkdownRendererProps) {
   return (
-    <div className={`prose dark:prose-invert max-w-none ${className}`}>
+    <div className={`prose prose-adaptive max-w-none ${className}`}>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}

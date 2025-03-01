@@ -82,7 +82,7 @@ const AboutSection = () => (
     
     {/* Personal introduction */}
     <div className="space-y-6">
-      <div className="prose prose-lg max-w-none">
+      <div className="prose prose-adaptive prose-lg max-w-none">
         <p className="text-xl leading-relaxed">
           I'm passionate about solving difficult, thought-provoking problems at the intersection of machine learning, 
           computer vision, and their applications to fields like physics, bio, and every day life.
@@ -141,7 +141,7 @@ const ProjectsSection = ({ projects, loading, error }: { projects: Project[], lo
     </div>
     
     <div className="space-y-6">
-      <div className="prose prose-lg max-w-none">
+      <div className="prose prose-adaptive prose-lg max-w-none">
         <p className="leading-relaxed">
           Building meaningful projects is how I translate my ideas into reality. Each project represents a problem 
           I found worth solving or a question I wanted to explore. While I have many interests, these featured projects 
@@ -740,7 +740,7 @@ const RecentBlogSection = () => {
         </Link>
       </div>
       
-      <div className="prose prose-lg max-w-none mb-6">
+      <div className="prose prose-adaptive prose-lg max-w-none mb-6">
         <p className="leading-relaxed">
           Writing and research allow me to explore ideas in depth and share my discoveries with others. My blog is where I document 
           my learning journey, share technical insights, and occasionally dive into philosophical questions about technology and its 
@@ -921,7 +921,7 @@ const InstagramFeed = () => {
         </a>
       </div>
       
-      <div className="prose prose-lg max-w-none mb-6">
+      <div className="prose prose-adaptive prose-lg max-w-none mb-6">
         <p className="leading-relaxed">
           Beyond my academic and professional work, I share glimpses of my day-to-day life on Instagram. It's like a more exclusive internet portfolio.
         </p>
