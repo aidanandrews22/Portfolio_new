@@ -969,15 +969,8 @@ const InstagramFeed = () => {
                 <div className="font-semibold">2,000+</div>
                 <div className="opacity-75 text-xs">Followers</div>
               </div>
-              <div className="text-center">
-                <div className="font-semibold">500+</div>
-                <div className="opacity-75 text-xs">Following</div>
-              </div>
             </div>
             
-            <p className="mt-6 text-sm text-center">
-              Student | Researcher | Athlete | Builder
-            </p>
             
             <a 
               href="https://www.instagram.com/aidanandrewss/" 
