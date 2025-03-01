@@ -10,8 +10,8 @@ interface MarkdownRendererProps {
   className?: string;
 }
 
-function CodeBlock({ children, language }: { children: string; language: string }) {
-  const [copied, setCopied] = useState(false);
+// Custom hook for dark mode detection
+function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -44,6 +44,13 @@ function CodeBlock({ children, language }: { children: string; language: string 
       observer.disconnect();
     };
   }, []);
+
+  return isDarkMode;
+}
+
+function CodeBlock({ children, language }: { children: string; language: string }) {
+  const [copied, setCopied] = useState(false);
+  const isDarkMode = useDarkMode();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(children).then(() => {
@@ -192,6 +199,58 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
             
             // Regular image
             return <img {...props} className="rounded-lg" />;
+          },
+          // Add custom component for summary tags
+          summary: (props) => (
+            <summary
+              {...props}
+              className="cursor-pointer"
+            />
+          ),
+          // Add custom component for details tags
+          details: ({ node, children, ...rest }) => {
+            // Find the summary element
+            const childrenArray = Array.isArray(children) ? children : [children];
+            const summaryIndex = childrenArray.findIndex(
+              (child: any) => child?.props?.node?.tagName === 'summary'
+            );
+            
+            // Separate summary from content
+            const summary = summaryIndex !== -1 ? childrenArray[summaryIndex] : null;
+            
+            // Extract the actual text content
+            // We need to recursively extract text from the content
+            const extractTextContent = (node: any): string => {
+              if (typeof node === 'string') return node;
+              if (!node) return '';
+              
+              // If it's a React element with children
+              if (node.props && node.props.children) {
+                if (Array.isArray(node.props.children)) {
+                  return node.props.children.map(extractTextContent).join('');
+                } else {
+                  return extractTextContent(node.props.children);
+                }
+              }
+              
+              return '';
+            };
+            
+            // Get all content except the summary
+            const contentNodes = childrenArray.filter((_, i) => i !== summaryIndex);
+            const textContent = contentNodes.map(extractTextContent).join('');
+            
+            // Render content as a code block
+            return (
+              <details {...rest}>
+                {summary}
+                <div className="mt-2">
+                  <CodeBlock language="text">
+                    {textContent}
+                  </CodeBlock>
+                </div>
+              </details>
+            );
           },
         }}
       >

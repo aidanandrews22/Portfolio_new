@@ -6,7 +6,7 @@
   --color-primary: oklch(0.55 0.18 250.0);    /* A balanced blue that works well in both light/dark modes */
   --color-secondary: oklch(0.45 0.15 250.0);  /* Slightly darker variant for hover states */
   --color-background-light: oklch(1 0 0);      /* Pure white */
-  --color-background-dark: var(--color-gray-900);     /* Near black for better eye comfort */
+  --color-background-dark: rgba(33, 33, 33, 0.9);     /* Near black for better eye comfort */
   --color-text-light: oklch(0.2 0 0);          /* Dark gray for light mode text */
   --color-text-dark: oklch(0.95 0 0);          /* Off-white for dark mode text - equivalent to gray-50/100 */
   --color-surface-light: oklch(0.98 0 0);      /* Off-white for cards in light mode */
