@@ -10,6 +10,7 @@ const ProjectView = lazy(() => import('./pages/ProjectView'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Header = lazy(() => import('./components/Header'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
+const ProjectIndicatorTest = lazy(() => import('./components/ProjectIndicatorTest'));
 
 export default function App() {
   // Apply color scheme adaptive class to html element
@@ -62,6 +63,7 @@ export default function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/bookshelf" element={<Bookshelf />} />
+              <Route path="/test/indicators" element={<ProjectIndicatorTest />} />
             </Routes>
           </Suspense>
         </main>

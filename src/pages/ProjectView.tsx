@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MarkdownRenderer from '../components/MarkdownRenderer';
+import ProjectIndicators from '../components/ProjectIndicators';
 
 interface Project {
   id: string;
@@ -110,6 +111,11 @@ export default function ProjectView() {
               Live Demo →
             </a>
           )}
+        </div>
+        
+        {/* Project Indicators */}
+        <div className="mt-6">
+          <ProjectIndicators projectId={project.id} />
         </div>
       </div>
 

@@ -1,15 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
 import FilterDropdown from '../components/FilterDropdown';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  demoLink?: string;
-  githubLink?: string;
-  tags: string[];
-}
+import ProjectCard, { Project } from '../components/ProjectCard';
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -94,62 +86,11 @@ export default function Projects() {
       
       <div className="grid gap-6 md:grid-cols-2">
         {filteredProjects.map((project, index) => (
-          <motion.article
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="h-full p-6 rounded-lg border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-colors group cursor-pointer"
-            onClick={() => window.location.href = `/projects/${project.id}`}
-          >
-            <div className="flex flex-col h-full">
-              <h2 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{project.title}</h2>
-              <p className="mb-4 text-sm/relaxed">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags?.map(tag => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-4 mt-auto">
-                {project.githubLink && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.open(project.githubLink, '_blank', 'noopener noreferrer');
-                    }}
-                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    GitHub →
-                  </button>
-                )}
-                {project.demoLink && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.open(project.demoLink, '_blank', 'noopener noreferrer');
-                    }}
-                    className="text-sm hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    Live Demo →
-                  </button>
-                )}
-                <span 
-                  className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity ml-auto"
-                >
-                  View Details →
-                </span>
-              </div>
-            </div>
-          </motion.article>
+          <ProjectCard 
+            key={project.id} 
+            project={project} 
+            index={index}
+          />
         ))}
       </div>
     </motion.div>

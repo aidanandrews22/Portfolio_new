@@ -29,7 +29,7 @@ export default function FilterDropdown({ options, selectedOption, onSelect, labe
         onClick={() => setIsOpen(!isOpen)}
         className="px-3 py-2 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] 
                  hover:border-[color-mix(in_oklch,var(--color-primary)_40%,transparent)] transition-colors
-                 flex items-center justify-between min-w-[120px] sm:min-w-[160px] bg-surface text-sm sm:text-base cursor-pointer"
+                 flex items-center justify-between min-w-[120px] sm:min-w-[160px] bg-background text-sm sm:text-base cursor-pointer"
       >
         <span className="mr-2 truncate">{label}:</span>
         <span className="font-medium truncate">{selectedOption || 'All'}</span>
@@ -49,7 +49,7 @@ export default function FilterDropdown({ options, selectedOption, onSelect, labe
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute z-[1] w-full mt-2 bg-surface
+            className="absolute z-[1] w-full mt-2 bg-background
                      border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] rounded-lg shadow-lg"
           >
             <ul className="py-1 max-h-[60vh] overflow-y-auto">

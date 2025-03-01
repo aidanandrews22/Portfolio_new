@@ -6,13 +6,14 @@
   --color-primary: oklch(0.55 0.18 250.0);    /* A balanced blue that works well in both light/dark modes */
   --color-secondary: oklch(0.45 0.15 250.0);  /* Slightly darker variant for hover states */
   --color-background-light: oklch(1 0 0);      /* Pure white */
-  --color-background-dark: oklch(0.1 0 0);     /* Near black for better eye comfort */
+  --color-background-dark: var(--color-gray-900);     /* Near black for better eye comfort */
   --color-text-light: oklch(0.2 0 0);          /* Dark gray for light mode text */
   --color-text-dark: oklch(0.95 0 0);          /* Off-white for dark mode text - equivalent to gray-50/100 */
   --color-surface-light: oklch(0.98 0 0);      /* Off-white for cards in light mode */
   --color-surface-dark: oklch(0.15 0 0);       /* Dark gray for cards in dark mode */
   --color-border-light: oklch(0.85 0 0);       /* Light gray for borders in light mode */
   --color-border-dark: oklch(0.25 0 0);        /* Dark gray for borders in dark mode */
+  
 
   /* Typography */
   --font-sans: ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", system-ui, sans-serif;
@@ -72,7 +73,6 @@
     --color-text: var(--color-text-dark);
     --color-surface: var(--color-surface-dark);
     --color-border: var(--color-border-dark);
-    
     transition: var(--transition-theme);
     background-color: var(--color-background);
     color: var(--color-text);
@@ -142,6 +142,41 @@
     
     html.force-dark & {
       background-color: var(--color-surface-dark);
+    }
+  }
+
+  .bg-clap {
+    @media (prefers-color-scheme: dark) {
+      background-color: oklch(0.3 0 0);
+    }
+    @media (prefers-color-scheme: light) {
+      background-color: oklch(0.95 0 0);
+    }
+    
+    html.force-light & {
+      background-color: oklch(0.95 0 0);
+    }
+    
+    html.force-dark & {
+      background-color: oklch(0.3 0 0);
+    }
+  }
+  
+  /* Add explicit hover variant for bg-clap */
+  .hover\:bg-clap:hover {
+    @media (prefers-color-scheme: dark) {
+      background-color: oklch(0.3 0 0);
+    }
+    @media (prefers-color-scheme: light) {
+      background-color: oklch(0.95 0 0);
+    }
+    
+    html.force-light & {
+      background-color: oklch(0.95 0 0);
+    }
+    
+    html.force-dark & {
+      background-color: oklch(0.3 0 0);
     }
   }
   
