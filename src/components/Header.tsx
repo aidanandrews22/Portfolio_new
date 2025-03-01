@@ -50,9 +50,9 @@ export default function Header() {
                             {/* Image with decorative elements */}
                             <div className="relative">
                                 <img 
-                                    src="/assets/header.jpeg" 
+                                    src="/assets/header2.jpeg" 
                                     alt="Aidan Andrews" 
-                                    className="w-16 h-16 rounded-2xl object-cover border-2 border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] group-hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all duration-300"
+                                    className="w-32 h-32 rounded-2xl object-cover border-2 border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] group-hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all duration-300"
                                 />
                                 {/* Decorative circle */}
                                 <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
