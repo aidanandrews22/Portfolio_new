@@ -26,11 +26,11 @@ const AboutSection = () => (
     {/* Hero section with background */}
     <div className="relative mb-12 rounded-2xl overflow-hidden">
       {/* Placeholder for hero image - replace with a personal photo */}
-      <div className="h-100">
+      <div className="">
         <img 
-          src="/assets/About/cover.jpg" 
+          src="/assets/About/work.jpg" 
           alt="Aidan Andrews" 
-          className="w-full h-full object-cover object-right dark:brightness-75"
+          className="w-full h-full dark:brightness-75"
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
           }}
