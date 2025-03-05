@@ -19,6 +19,7 @@ type AnimatedIndicatorProps = {
   animationClass: string;
   indicatorType: IndicatorType;
   projectId: string;
+  compact?: boolean;
 };
 
 const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({ 
@@ -27,7 +28,8 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
   color, 
   animationClass,
   indicatorType,
-  projectId
+  projectId,
+  compact = false
 }) => {
   const [count, setCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -152,16 +154,16 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
   };
   
   return (
-    <div className="flex flex-col items-center justify-center relative">
-      <div className="relative">
+    <div className="flex items-center justify-center relative">
+      <div className="relative flex items-center">
         {showCountIndicator && (
-          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded-full text-xs animate-fade-up" style={{ color: color, fontWeight: 'bold' }}>
+          <div className={`absolute -top-${compact ? '6' : '8'} left-${compact ? '3' : '5'} transform px-2 py-${compact ? '0.5' : '1'} rounded-full ${compact ? 'text-[10px]' : 'text-xs'} animate-fade-up`} style={{ color: color, fontWeight: 'bold' }}>
             +1
           </div>
         )}
         <div>
           <button 
-            className={`flex items-center justify-center rounded-full p-3 transition-transform cursor-pointer ${isAnimating ? 'scale-110' : ''}`}
+            className={`flex items-center justify-center rounded-full ${compact ? 'p-2' : 'p-3'} transition-transform cursor-pointer ${isAnimating ? 'scale-110' : ''}`}
             onClick={handleClick}
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
@@ -169,39 +171,27 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
           >
             <Icon 
               stroke={color}
-              size={24}
+              size={compact ? 18 : 24}
               style={{ fill: 'none' }}
               className={`transition-all duration-300 ${isAnimating ? animationClass : ''}`}
             />
             
             {showTooltip && (
-              <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap z-10">
+              <span className={`absolute left-0 bottom-full ${compact ? 'mb-1' : 'mb-2'} px-2 py-1 bg-gray-800 text-white ${compact ? 'text-[10px]' : 'text-xs'} rounded whitespace-nowrap z-10`}>
                 {label}
                 <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></span>
               </span>
             )}
           </button>
         </div>
-      </div>
       
-      {count !== null && count > 0 && (
-        <div className="mt-1">
-          <button 
-            className="relative text-sm font-normal"
-            style={{ color }}
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-          >
+        {/* Counter - now horizontally aligned */}
+        <div className={`ml-${compact ? '2' : '3'}`}>
+          <span className={`font-medium ${compact ? 'text-xs' : 'text-sm'}`} style={{ color }}>
             {count}
-            {/* {showTooltip && (
-              <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap">
-                Total {label}
-                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></span>
-              </span>
-            )} */}
-          </button>
+          </span>
         </div>
-      )}
+      </div>
       
       {error && (
         <div className="text-red-500 text-xs mt-1">{error}</div>
@@ -213,11 +203,12 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
 // Main component with the three indicators
 interface ProjectIndicatorsProps {
   projectId: string;
+  compact?: boolean;
 }
 
-const ProjectIndicators: React.FC<ProjectIndicatorsProps> = ({ projectId }) => {
+const ProjectIndicators: React.FC<ProjectIndicatorsProps> = ({ projectId, compact = false }) => {
   return (
-    <div className="flex justify-center space-x-8">
+    <div className={`flex items-center justify-center ${compact ? 'space-x-6' : 'space-x-10'}`}>
       <AnimatedIndicator 
         icon={Brain} 
         label="Clever" 
@@ -225,6 +216,7 @@ const ProjectIndicators: React.FC<ProjectIndicatorsProps> = ({ projectId }) => {
         animationClass="animate-rotate"
         indicatorType="clever"
         projectId={projectId}
+        compact={compact}
       />
       <AnimatedIndicator 
         icon={Rocket} 
@@ -233,6 +225,7 @@ const ProjectIndicators: React.FC<ProjectIndicatorsProps> = ({ projectId }) => {
         animationClass="animate-fly-up"
         indicatorType="launch"
         projectId={projectId}
+        compact={compact}
       />
       <AnimatedIndicator 
         icon={Lightbulb} 
@@ -241,6 +234,7 @@ const ProjectIndicators: React.FC<ProjectIndicatorsProps> = ({ projectId }) => {
         animationClass="animate-pulse-expand"
         indicatorType="inspired"
         projectId={projectId}
+        compact={compact}
       />
     </div>
   );

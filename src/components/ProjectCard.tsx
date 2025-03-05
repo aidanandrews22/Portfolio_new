@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import ProjectIndicators from '../components/ProjectIndicators';
 
 export interface Project {
   id: string;
@@ -74,6 +75,10 @@ const ProjectCard = ({ project, index = 0, compact = false, onClick }: ProjectCa
                 {tag}
               </span>
             ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-6" onClick={(e) => e.stopPropagation()}>
+            <ProjectIndicators projectId={project.id} compact={true} />
           </div>
 
           <div className="flex items-center gap-4 mt-auto">
