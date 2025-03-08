@@ -179,6 +179,10 @@
       background-color: oklch(0.3 0 0);
     }
   }
+
+  .custom-outline {
+    text-shadow: 1px 1px 1px black;
+  }
   
   .border-adaptive {
     @media (prefers-color-scheme: dark) {

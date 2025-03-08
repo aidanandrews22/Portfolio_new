@@ -25,22 +25,25 @@ const AboutSection = () => (
   <section className="relative">
     {/* Hero section with background */}
     <div className="relative mb-12 rounded-2xl overflow-hidden">
-      {/* Placeholder for hero image - replace with a personal photo */}
       <div className="">
         <img 
-          src="/assets/About/work.jpg" 
+          src="/assets/About/call.jpg" 
           alt="Aidan Andrews" 
-          className="w-full h-full dark:brightness-75"
+          className="w-full h-full object-cover dark:brightness-75"
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
           }}
         />
       </div>
       
-      {/* Overlay with intro text */}
-      <div className="absolute inset-0 flex flex-col justify-end py-8 px-8 md:px-12 md:pt-60 bg-gradient-to-t from-[color-mix(in_oklch,black_50%,transparent)] to-transparent dark:from-[color-mix(in_oklch,black_70%,transparent)]">
-        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">Aidan Andrews</h1>
-        <p className="text-xl md:text-2xl opacity-90 font-light text-white">Student. Researcher. Builder.</p>
+      {/* Overlay with intro text - adjusted to start from top-left */}
+      <div className="absolute inset-0 flex flex-col justify-start items-start py-4 px-4 md:px-12 bg-gradient-to-r from-[color-mix(in_oklch,black_25%,transparent)] to-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white custom-outline">Aidan Andrews</h1>
+        <div className="flex flex-row space-x-2">
+          <p className="text-xl md:text-2xl opacity-90 font-light text-orange-400 custom-outline">Student.</p>
+          <p className="text-xl md:text-2xl opacity-90 font-light text-blue-400 custom-outline">Researcher.</p>
+          <p className="text-xl md:text-2xl opacity-90 font-light text-white custom-outline">Builder.</p>
+        </div>
       </div>
     </div>
 
